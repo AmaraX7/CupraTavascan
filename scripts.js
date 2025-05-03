@@ -2,14 +2,14 @@ const videoUrls = [
     "https://www.youtube.com/embed/Sdj9iO8opuU",
     "https://www.youtube.com/embed/NXiGN_T-M9U",
     "https://www.youtube.com/embed/RdcoqVPYYug",
-    "https://www.youtube.com/embed/XubUlnIh1I"
+    "https://www.youtube.com/embed/TMls2lJvD68&list"
 ];
 
 const videoDescriptions = [
-    "Descripción del video 1: Introducción al Cupra Tavascan.",
+    "Sistema de Aparcamiento ",
     "Descripción del video 2: Características del diseño exterior.",
     "Descripción del video 3: Tecnología y conectividad del vehículo.",
-    "Descripción del video 4: Experiencia de conducción eléctrica."
+    "Climatización"
 ];
 
 let currentVideoIndex = 0;

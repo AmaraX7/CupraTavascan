@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat', Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background-image: url('https://images.unsplash.com/photo-1620395450364-8428e7a0767b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
     background-size: cover;
     background-position: center;
@@ -20,7 +20,7 @@ header {
 }
 
 .main-image {
-    width: 80%;
+    width: 50%;
     max-width: 500px;
     border-radius: 10px;
     margin: 20px 0;

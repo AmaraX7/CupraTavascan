@@ -1,0 +1,18 @@
+# Ignorar el archivo .env
+.env
+
+# Ignorar node_modules (si estás usando Node.js)
+node_modules/
+
+# Ignorar el directorio de compilación (si aplica)
+dist/
+build/
+
+# Ignorar archivos de logs
+*.log
+
+# Ignorar archivos de sistema de macOS
+.DS_Store
+
+# Ignorar archivos de sistema de Windows
+Thumbs.db

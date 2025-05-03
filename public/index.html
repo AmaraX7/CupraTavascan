@@ -3,7 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <title>Mi Web Cupra Tavascan</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Base styles */
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #000000;
+    min-height: 100vh;
+    line-height: 2;
+    text-transform: none;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.cupraofficial.es/content/dam/public/cupra-website/cars/tavascan/automatic-gallery/x-large/cupra-tavascan-blue-colour-21-inch-copper-black-covers-wheels.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    opacity: 0.9; /* Ajusta esto según la opacidad que quieras */
+    z-index: -1;
+}
+
+header {
+    background-color: #20202a;
+    padding: 8px 16px;
+    text-align: left;
+    color: #fff;
+    position: relative;
+    height: auto;
+    line-height: 1.2;
+}
+
+.header-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 120px; /* ajusta el tamaño */
+    height: auto; /* mantiene proporciones */
+    position: static;
+    /*margin: 20px 0;
+    top: 20px; */
+    right: 20px;
+}
+  
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 50px;
+    font-weight: 300;
+    margin: 5px;
+    padding: 5px;
+    color: #ffffff;
+    left: 20px;
+}
+
+#Overview{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 5px;
+    padding: 25px;
+    color: #20202a;
+}
+
+.image-container {
+    width: 100%;
+    max-width: 1000px; /* ajusta según tu diseño */
+    align-items: center;
+    position: relative;
+    /*display: flex;
+    justify-content: center;*/
+    margin: 0 auto;
+}
+
+.dashboard-image {
+    width: 100%;
+    display: block;
+}
+
+.hotspot {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 32px;
+    font-weight: bold;
+    font-size: 15px;
+    transform: translate(-50%, 0%);
+}
+
+.info-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    width: 80%;
+    margin: 20px auto 0;
+    border-radius: 8px;
+}
+
+
+.buttons button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #5b508d;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: #322a51;
+}
+
+#response {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+.message-box {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #000;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Video Carousel */
+
+#video-carousel {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.carousel-videos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.carousel-videos iframe {
+    height: 500px;
+    width: 900px;
+}
+
+button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 25px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    font-size: 24px;
+}
+
+button.prev {
+    left: 10px;
+}
+
+button.next {
+    right: 10px;
+}
+
+button.prev:hover, button.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#video-description {
+    margin-top: 20px;
+    font-size: 23px;
+    color: #1d1d1d;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* CONTADOR STYLES */
+
+#countdown {
+    text-align: flex-start;
+    margin: 5px 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#timer {
+    font-size: 36px; /* Tamaño más grande para destacar */
+    font-weight: bold;
+    color: red; /* Color rojo */
+    background-color: rgba(255, 0, 0, 0.1); /* Fondo rojo claro */
+    padding: 40px;
+    border: 2px solid red; /* Borde rojo */
+    border-radius: 10px; /* Bordes redondeados */
+    display: inline-block; /* Para que el diseño sea compacto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para resaltar */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra en el texto */
+    text-align: flex-start;
+}
+
+
+/* CHATBOT STYLES */
+#chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 350px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.chat-header {
+    background-color: #ff0055;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.chat-header button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.chat-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.chat-body.visible {
+    max-height: 400px;
+}
+
+.messages {
+    height: 300px;
+    overflow-y: auto;
+    padding: 15px;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+}
+
+.message.user {
+    background-color: #eee;
+    margin-left: auto;
+}
+
+.message.bot {
+    background-color: #ff0055;
+    color: white;
+}
+
+.message.typing {
+    background-color: #eaeaea;
+    color: #666;
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.chat-input button {
+    background-color: #ff0055;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chat-input button:hover {
+    background-color: #d13c00;
+}
+
+.pestaña {
+    display: none;
+    text-align: center;
+    background-attachment: fixed;
+    padding: 30px;
+  }
+  
+.pestaña.activa {
+    display: block;
+    background-attachment: fixed;
+}
+  
+  body.fondo-dos::before {
+    background-image: url('https://www.seat-cupra-mediacenter.es/content/dam/seat-media-center/models-all-brands/cupra-models/cupra-tavascan/press-kit/tavascan-mayo-2024/New-hero-for-the-new-era-CUPRA-Tavascan-is-ready-to-hit-the-market_47_HQ.jpg'); /* otro fondo */
+  }
+  
+
+  /* Estilo para la barra de navegación */
+.tab-bar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.tab-bar .tab-title {
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 20px; /* Espacio entre el título y los botones */
+}
+
+.tab-bar button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.tab-bar button:hover {
+    background-color: #555;
+}
+
+.tab-bar button:focus {
+    outline: none;
+    background-color: #666;
+}
+    </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -16,9 +418,9 @@
 
 
     <nav class="tab-bar">
-        <button onclick="cambiarPestaña('inicio')">Home</button>
-        <button onclick="cambiarPestaña('uno')">Interior</button>
-        <button onclick="cambiarPestaña('dos')">Videos</button>
+        <button id="tab-button-inicio">Home</button>
+        <button id="tab-button-uno">Interior</button>
+        <button id="tab-button-dos">Videos</button>
         <div id="tab-title">Welcome to Cupra Tavascan Experience</div>
     </nav>
 
@@ -39,23 +441,22 @@
             
         <section>
             <div class="image-container">
-                <img src="images/parteFrontal.jpg" alt="Parte Frontal" class="dashboard-image">
-                
+                    <img src="images/parteFrontal.jpg" alt="Parte Frontal" class="dashboard-image">
                 <!-- Botones flotantes -->
-                <button class="hotspot" style="top: 1.6%; left: 11.7%;" onclick="showInfo(1)">1</button>
-                <button class="hotspot" style="top: 1.6%; left: 15.5%;" onclick="showInfo(2)">2</button>
-                <button class="hotspot" style="top: 1.6%; left: 19.5%;" onclick="showInfo(3)">3</button>
-                <button class="hotspot" style="top: 1.6%; left: 28.5%;" onclick="showInfo(4)">4</button>
-                <button class="hotspot" style="top: 1.6%; left: 32.5%;" onclick="showInfo(5)">5</button>
-                <button class="hotspot" style="top: 1.6%; left: 38.4%;" onclick="showInfo(6)">6</button>
-                <button class="hotspot" style="top: 1.6%; left: 43%;" onclick="showInfo(5)">5</button>
-                <button class="hotspot" style="top: 1.6%; left: 47%;" onclick="showInfo(7)">7</button>
-                <button class="hotspot" style="top: 1.6%; left: 63.7%;" onclick="showInfo(8)">8</button>
-                <button class="hotspot" style="top: 89.7%; left: 17.6%;" onclick="showInfo(9)">9</button>
-                <button class="hotspot" style="top: 89.7%; left: 28%;" onclick="showInfo(10)">10</button>
-                <button class="hotspot" style="top: 89.7%; left: 33%;" onclick="showInfo(11)">11</button>
-                <button class="hotspot" style="top: 89.7%; left: 40%;" onclick="showInfo(12)">12</button>
-                <button class="hotspot" style="top: 89.7%; left: 67.5%;" onclick="showInfo(13)">13</button>
+                <button class="hotspot" style="top: 1.6%; left: 11.7%;" id="info-button-1">1</button>
+                <button class="hotspot" style="top: 1.6%; left: 15.5%;" id="info-button-2">2</button>
+                <button class="hotspot" style="top: 1.6%; left: 19.5%;" id="info-button-3">3</button>
+                <button class="hotspot" style="top: 1.6%; left: 28.5%;" id="info-button-4">4</button>
+                <button class="hotspot" style="top: 1.6%; left: 32.5%;" id="info-button-5">5</button>
+                <button class="hotspot" style="top: 1.6%; left: 38.4%;" id="info-button-6">6</button>
+                <button class="hotspot" style="top: 1.6%; left: 43%;" id="info-button-5">5</button>
+                <button class="hotspot" style="top: 1.6%; left: 47%;" id="info-button-7">7</button>
+                <button class="hotspot" style="top: 1.6%; left: 63.7%;" id="info-button-8">8</button>
+                <button class="hotspot" style="top: 89.7%; left: 17.6%;" id="info-button-9">9</button>
+                <button class="hotspot" style="top: 89.7%; left: 28%;" id="info-button-10">10</button>
+                <button class="hotspot" style="top: 89.7%; left: 33%;" id="info-button-11">11</button>
+                <button class="hotspot" style="top: 89.7%; left: 40%;" id="info-button-12">12</button>
+                <button class="hotspot" style="top: 89.7%; left: 67.5%;" id="info-button-13">13</button>
             </div>
             
             <div id="info-box" class="info-box">
@@ -94,18 +495,295 @@
     </div>
 
     <script>
-        // Mostrar mensajes de los botones
-        function showMessage(message) {
-            const responseSection = document.getElementById('response');
-            responseSection.innerHTML = `
-                <div class="message-box">
-                    ${message}
-                </div>
-            `;
+        // Variables globales para el carrusel de videos
+        const videoUrls = [
+            "https://www.youtube.com/embed/Sdj9iO8opuU",
+            "https://www.youtube.com/embed/NXiGN_T-M9U",
+            "https://www.youtube.com/embed/RdcoqVPYYug",
+            "https://www.youtube.com/embed/TMls2lJvD68",
+            "https://www.youtube.com/embed/cLeqpI9bcII",
+            "https://www.youtube.com/embed/mMrQCWabyO4",
+        ];
+
+        const videoDescriptions = [
+            "Sistema de Aparcamiento en Linea",
+            "Sistema de Aparcamiento en Bateria",
+            "Control de Crucero",
+            "Climatización",
+            "Sistema de Navegación",
+            "Aviso de Salida de Carril",
+        ];
+
+        let currentVideoIndex = 0;
+
+        // Información del Cupra Tavascan para el chatbot
+        const cupraTavascanInfo = {
+            modelo: 'Cupra Tavascan',
+            precio: 'desde 49,900€',
+            autonomia: 'hasta 510 km (WLTP)',
+            bateria: '77 kWh',
+            potencia: 'hasta 340 CV (250 kW)',
+            aceleracion: '0 a 100 km/h en 5,6 segundos',
+            colores: ['Dusk Blue', 'Dark Aluminium', 'Fiord Blue'],
+            garantia: '3 años o 100.000 km (vehículo), 8 años o 160.000 km (batería)',
+            carga: 'carga rápida DC de hasta 135 kW, del 10% al 80% en aproximadamente 30 minutos',
+            equipamiento: 'pantalla táctil de 15", sistema de navegación, conectividad Apple CarPlay y Android Auto, asistentes de conducción avanzados',
+        };
+
+        // Función para mover el carrusel de videos
+        function moveCarousel(direction) {
+            // Actualizar el índice del video actual
+            currentVideoIndex += direction;
+
+            // Asegurarse de que el índice esté dentro de los límites
+            if (currentVideoIndex < 0) {
+                currentVideoIndex = videoUrls.length - 1;
+            } else if (currentVideoIndex >= videoUrls.length) {
+                currentVideoIndex = 0;
+            }
+
+            // Cambiar el video mostrado
+            const videoFrame = document.getElementById("current-video");
+            if (videoFrame) {
+                videoFrame.src = videoUrls[currentVideoIndex];
+            } else {
+                console.error("Elemento con ID 'current-video' no encontrado.");
+            }
+
+            // Cambiar la descripción del video
+            const videoDescription = document.getElementById("video-description");
+            if (videoDescription) {
+                videoDescription.textContent = videoDescriptions[currentVideoIndex];
+                console.log(`Descripción actualizada: ${videoDescriptions[currentVideoIndex]}`);
+            } else {
+                console.error("Elemento con ID 'video-description' no encontrado.");
+            }
         }
 
-        // Lógica del chatbot
-        document.addEventListener('DOMContentLoaded', function() {
+        // Función para mostrar información de los botones flotantes
+        function showInfo(number) {
+            const infoBox = document.getElementById('info-box');
+            if (!infoBox) {
+                console.error("Elemento con ID 'info-box' no encontrado.");
+                return;
+            }
+            
+            let infoText = '';
+
+            switch (number) {
+                case 1:
+                    infoText = '1: Door handle.';
+                    break;
+                case 2:
+                    infoText = '2: Central locking -> Exterior mirror adjustment and power windows.';
+                    break;
+                case 3:
+                    infoText = '3: Lightning control';
+                    break;
+                case 4:
+                    infoText = '4: Turn signal and main beam lever';
+                    break;
+                case 5:
+                    infoText = '5: Multifunction steering wheel control panels';
+                    break;
+                case 6:
+                    infoText = '6: Digital Cockpit and control lamps';
+                    break;
+                case 7:
+                    infoText = '7: Gear selector and Electronic parking brake';
+                    break;
+                case 8:
+                    infoText = '8: Infotainment system';
+                    break;
+                case 9:
+                    infoText = '9: Open bonnet lever';
+                    break;
+                case 10:
+                    infoText = '10: Fuses';
+                    break;
+                case 11:
+                    infoText = '11: Steering wheel adjustment';
+                    break;
+                case 12:
+                    infoText = '12: Steering wheel with horn and driver front airbag';
+                    break;
+                case 13:
+                    infoText = '13: Hazard warning lights';
+                    break;
+                default:
+                    infoText = 'Undefined element.';
+            }
+
+            infoBox.textContent = infoText;
+        }
+
+        // Función para cambiar entre pestañas
+        function cambiarPestaña(id) {
+            // Obtener todas las pestañas
+            const pestañas = document.querySelectorAll('.pestaña');
+            const tabTitle = document.getElementById('tab-title');
+
+            // Ocultar todas las pestañas
+            pestañas.forEach(pestaña => {
+                pestaña.style.display = 'none';
+            });
+
+            // Mostrar solo la pestaña seleccionada
+            const pestañaActiva = document.getElementById(`pestaña-${id}`);
+            if (pestañaActiva) {
+                pestañaActiva.style.display = 'block';
+            } else {
+                console.error(`No se encontró la pestaña con ID: pestaña-${id}`);
+            }
+
+            // Para mostrar el título de la pestaña "Inicio"
+            if (id === 'inicio') {
+                if (tabTitle) {
+                    tabTitle.style.display = 'block';
+                } else {
+                    console.error("Elemento con ID 'tab-title' no encontrado.");
+                }
+            } else {
+                if (tabTitle) {
+                    tabTitle.style.display = 'none';
+                }
+            }
+        }
+
+        // Función para la cuenta atrás
+        function startCountdown(targetDate) {
+            const timerElement = document.getElementById("timer");
+            if (!timerElement) {
+                console.error("Elemento con ID 'timer' no encontrado.");
+                return;
+            }
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                if (distance < 0) {
+                    timerElement.textContent = "¡Tu coche ha llegado!";
+                    clearInterval(interval);
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                timerElement.textContent = `${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
+            }
+
+            const interval = setInterval(updateCountdown, 1000);
+            updateCountdown(); // Llama inmediatamente para evitar el retraso inicial
+            console.log("El script de la cuenta atrás se está ejecutando.");
+        }
+
+        // Implementación del chatbot directamente en el cliente
+        function processUserMessage(message) {
+            // Convertir el mensaje a minúsculas para hacer la comparación más sencilla
+            const mensajeLowerCase = message.toLowerCase().trim();
+            
+            // Variable para almacenar la respuesta
+            let respuesta = '';
+
+            // Respuestas predefinidas basadas en palabras clave en la pregunta
+            if (mensajeLowerCase.includes('precio') || mensajeLowerCase.includes('cuesta') || mensajeLowerCase.includes('vale')) {
+                respuesta = `El Cupra Tavascan está disponible ${cupraTavascanInfo.precio}.`;
+            }
+            else if (mensajeLowerCase.includes('autonomía') || mensajeLowerCase.includes('autonomia') || mensajeLowerCase.includes('batería') || mensajeLowerCase.includes('bateria') || mensajeLowerCase.includes('kilómetros') || mensajeLowerCase.includes('km')) {
+                respuesta = `El Cupra Tavascan ofrece una autonomía de ${cupraTavascanInfo.autonomia} y cuenta con una batería de ${cupraTavascanInfo.bateria}.`;
+            }
+            else if (mensajeLowerCase.includes('potencia') || mensajeLowerCase.includes('cv') || mensajeLowerCase.includes('caballos') || mensajeLowerCase.includes('kw')) {
+                respuesta = `El Cupra Tavascan ofrece una potencia de ${cupraTavascanInfo.potencia}.`;
+            }
+            else if (mensajeLowerCase.includes('aceleración') || mensajeLowerCase.includes('aceleracion') || mensajeLowerCase.includes('0 a 100') || mensajeLowerCase.includes('rápido') || mensajeLowerCase.includes('rapido')) {
+                respuesta = `El Cupra Tavascan tiene una ${cupraTavascanInfo.aceleracion}.`;
+            }
+            else if (mensajeLowerCase.includes('color') || mensajeLowerCase.includes('colores')) {
+                respuesta = `El Cupra Tavascan está disponible en los siguientes colores: ${cupraTavascanInfo.colores.join(', ')}.`;
+            }
+            else if (mensajeLowerCase.includes('garantía') || mensajeLowerCase.includes('garantia')) {
+                respuesta = `La garantía del Cupra Tavascan es de ${cupraTavascanInfo.garantia}.`;
+            }
+            else if (mensajeLowerCase.includes('carga') || mensajeLowerCase.includes('cargar') || mensajeLowerCase.includes('tiempo')) {
+                respuesta = `El Cupra Tavascan tiene ${cupraTavascanInfo.carga}.`;
+            }
+            else if (mensajeLowerCase.includes('equipamiento') || mensajeLowerCase.includes('pantalla') || mensajeLowerCase.includes('navegador') || mensajeLowerCase.includes('apple') || mensajeLowerCase.includes('android')) {
+                respuesta = `El equipamiento del Cupra Tavascan incluye ${cupraTavascanInfo.equipamiento}.`;
+            }
+            else if (mensajeLowerCase.includes('característica') || mensajeLowerCase.includes('caracteristicas') || mensajeLowerCase.includes('especificaciones') || mensajeLowerCase.includes('información') || mensajeLowerCase.includes('informacion')) {
+                // Dar información general sobre el vehículo
+                respuesta = `El ${cupraTavascanInfo.modelo} es un SUV eléctrico con un precio ${cupraTavascanInfo.precio}, una autonomía de ${cupraTavascanInfo.autonomia}, batería de ${cupraTavascanInfo.bateria} y potencia de ${cupraTavascanInfo.potencia}. Ofrece ${cupraTavascanInfo.carga}.`;
+            }
+            else if (mensajeLowerCase.includes('hola') || mensajeLowerCase.includes('buenos días') || mensajeLowerCase.includes('buenas tardes') || mensajeLowerCase.includes('saludos')) {
+                respuesta = `¡Hola! Soy el asistente virtual de Cupra. ¿En qué puedo ayudarte con el Cupra Tavascan?`;
+            }
+            else {
+                // Respuesta por defecto si no se encuentra ninguna coincidencia
+                respuesta = `Lo siento, no tengo información específica sobre esa consulta. El Cupra Tavascan es un SUV eléctrico con una autonomía de hasta 510 km, potencia de hasta 340 CV y un precio desde 49,900€. ¿Hay algo específico que quieras saber sobre su precio, autonomía, equipamiento o características?`;
+            }
+
+            return {
+                text: respuesta,
+                timestamp: new Date().toISOString()
+            };
+        }
+
+        // Esperar a que el DOM esté completamente cargado
+        document.addEventListener("DOMContentLoaded", function() {
+            console.log("DOM cargado completamente");
+            
+            // Configurar listeners para los botones del carrusel
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
+            
+            if (prevButton) {
+                prevButton.addEventListener('click', function() {
+                    moveCarousel(-1);
+                });
+                console.log("Botón 'prev-button' configurado");
+            } else {
+                console.error("Botón con ID 'prev-button' no encontrado");
+            }
+            
+            if (nextButton) {
+                nextButton.addEventListener('click', function() {
+                    moveCarousel(1);
+                });
+                console.log("Botón 'next-button' configurado");
+            } else {
+                console.error("Botón con ID 'next-button' no encontrado");
+            }
+            
+            // Configurar listeners para los botones de información
+            for (let i = 1; i <= 13; i++) {
+                const infoButton = document.getElementById(`info-button-${i}`);
+                if (infoButton) {
+                    infoButton.addEventListener('click', function() {
+                        showInfo(i);
+                    });
+                    console.log(`Botón 'info-button-${i}' configurado`);
+                }
+            }
+            
+            // Configurar listeners para los botones de pestañas
+            const tabButtons = document.querySelectorAll('[id^="tab-button-"]');
+            tabButtons.forEach(button => {
+                const id = button.id.replace('tab-button-', '');
+                button.addEventListener('click', function() {
+                    cambiarPestaña(id);
+                });
+                console.log(`Botón 'tab-button-${id}' configurado`);
+            });
+            
+            // Iniciar la cuenta regresiva
+            const targetDate = new Date("2025-06-01T00:00:00").getTime();
+            startCountdown(targetDate);
+
+            // Configurar el chatbot
             const toggleBtn = document.getElementById('toggle-chat');
             const chatBody = document.getElementById('chat-body');
             const sendBtn = document.getElementById('send-btn');
@@ -121,6 +799,9 @@
             toggleBtn.addEventListener('click', function() {
                 chatBody.classList.toggle('visible');
             });
+
+            // Añadir un mensaje de bienvenida al chatbot
+            addMessage('¡Hola! Soy el asistente virtual de Cupra Tavascan. ¿En qué puedo ayudarte?', 'bot');
 
             // Enviar mensaje
             sendBtn.addEventListener('click', sendMessage);
@@ -138,61 +819,21 @@
                 addMessage(message, 'user');
                 userInput.value = '';
 
-                // Llamar al backend
-                getBotResponse(message);
+                // Procesar el mensaje y obtener respuesta
+                setTimeout(() => {
+                    const response = processUserMessage(message);
+                    addMessage(response.text, 'bot');
+                }, 500);
             }
 
             function addMessage(message, sender) {
                 const messageDiv = document.createElement('div');
                 messageDiv.classList.add('message', sender);
-                if (sender === 'bot-typing') {
-                    messageDiv.classList.add('bot-typing');
-                }
                 messageDiv.textContent = message;
                 messagesContainer.appendChild(messageDiv);
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
             }
-
-            async function getBotResponse(message) {
-                addMessage('Escribiendo...', 'bot-typing');
-
-                try {
-                    console.log('Enviando solicitud a /api/chat con message:', message);
-                    const response = await fetch('/api/chat', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ message: message }),
-                    });
-
-                    console.log('Respuesta recibida:', response);
-                    if (!response.ok) {
-                        throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
-                    }
-
-                    const data = await response.json();
-                    console.log('Datos recibidos:', data);
-
-                    const typingMessage = document.querySelector('.bot-typing');
-                    if (typingMessage) {
-                        messagesContainer.removeChild(typingMessage);
-                    }
-
-                    addMessage(data.text || data.error, 'bot');
-                } catch (error) {
-                    console.error('Error en getBotResponse:', error);
-                    const typingMessage = document.querySelector('.bot-typing');
-                    if (typingMessage) {
-                        messagesContainer.removeChild(typingMessage);
-                    }
-                    addMessage(`Error: ${error.message}`, 'bot');
-                }
-            }
         });
     </script>
-
-    <!-- Cargar el script externo al final para que tenga acceso a todos los elementos del DOM -->
-    <script src="scripts.js"></script>
 </body>
 </html>

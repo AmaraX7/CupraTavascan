@@ -35,6 +35,25 @@ function moveCarousel(direction) {
 }
 
 
-function showInfo(num){
-    
+function showInfo(number) {
+    const infoBox = document.getElementById('info-box');
+    let infoText = '';
+
+    switch (number) {
+        case 1:
+            infoText = '1: Ajuste de los espejos retrovisores.';
+            break;
+        case 2:
+            infoText = '2: Control de ventanillas.';
+            break;
+        case 3:
+            infoText = '3: Palanca de luces e intermitentes.';
+            break;
+        // Añade más casos para cada número
+        default:
+            infoText = 'Elemento no definido.';
+    }
+
+    infoBox.textContent = infoText;
+
 }

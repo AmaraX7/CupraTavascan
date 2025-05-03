@@ -30,7 +30,7 @@ body::before {
 }
 
 header {
-    background-color: #3a394d;
+    background-color: #575673;
     padding: 10px;
     text-align: left;
     color: #fff;
@@ -44,10 +44,10 @@ header {
 }
 
 .logo {
-    width: 60px; /* ajusta el tamaño */
+    width: 80px; /* ajusta el tamaño */
     height: auto; /* mantiene proporciones */
     position: absolute;
-    /*margin: 20px 0;
+    margin: 20px 0;
     top: 20px;
     right: 20px;*/
 }

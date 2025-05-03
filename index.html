@@ -18,6 +18,7 @@
 
     <section>
         <p>Descubre el futuro de la conducción eléctrica, diseñado para emocionarte.</p>
+        <img src = "images/volante.jpg" alt="foto volante" class="foto">
     </section>
 
     <section class="buttons">
@@ -31,155 +32,113 @@
 
 
 
+<!-- Carrusel de Videos -->
 
 <section id="video-carousel">
     <h2>Carrusel de Videos</h2>
     <div class="carousel">
         <button class="prev" onclick="moveCarousel(-1)">&#10094;</button>
         <div class="carousel-videos">
-            <iframe src="https://www.youtube.com/embed/Sdj9iO8opuU" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/NXiGN_T-M9U" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/RdcoqVPYYug" frameborder="0" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/XubUlnIh1I" frameborder="0" allowfullscreen></iframe>
+            <iframe id="current-video" src="https://www.youtube.com/embed/Sdj9iO8opuU" frameborder="0" allowfullscreen></iframe>
         </div>
         <button class="next" onclick="moveCarousel(1)">&#10095;</button>
     </div>
 </section>
- <!-- Chatbot Container -->
- <section id="chatbot-container">
-    <div class="chat-header">
-        <h3>Asistente Cupra</h3>
-        <button id="toggle-chat">Abrir/Cerrar</button>
-    </div>
-    <div class="chat-body" id="chat-body">
-        <div class="messages" id="messages">
-            <div class="message bot">
-                Hola, soy el asistente de Cupra Tavascan. ¿En qué puedo ayudarte?
-            </div>
-        </div>
-        <div class="chat-input">
-            <input type="text" id="user-input" placeholder="Escribe tu pregunta...">
-            <button id="send-btn">Enviar</button>
-        </div>
-    </div>
-</section>
+
+
 <script>
+    // Mostrar mensajes de los botones
     function showMessage(message) {
-const responseSection = document.getElementById('response');
-responseSection.innerHTML = `
-    <div class="message-box">
-        ${message}
-    </div>
-`;
-}
-document.addEventListener('DOMContentLoaded', function() {
-            const toggleBtn = document.getElementById('toggle-chat');
-            const chatBody = document.getElementById('chat-body');
-            const sendBtn = document.getElementById('send-btn');
-            const userInput = document.getElementById('user-input');
-            const messagesContainer = document.getElementById('messages');
-            
-            // Toggle chat window
-            toggleBtn.addEventListener('click', function() {
-                chatBody.classList.toggle('visible');
-            });
-            
-            // Send message functionality
-            sendBtn.addEventListener('click', sendMessage);
-            userInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    sendMessage();
-                }
-            });
-            
-            function sendMessage() {
-                const message = userInput.value.trim();
-                if (message === '') return;
-                
-                // Add user message to chat
-                addMessage(message, 'user');
-                userInput.value = '';
-                
-                // Get bot response
-                getBotResponse(message);
-            }
-            
-            function addMessage(message, sender) {
-                const messageDiv = document.createElement('div');
-                messageDiv.classList.add('message', sender);
-                messageDiv.textContent = message;
-                messagesContainer.appendChild(messageDiv);
-                
-                // Scroll to bottom
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }
-            
-            async function getBotResponse(message) {
-                // Simulamos carga
-                addMessage('Escribiendo...', 'bot typing');
-                
-                try {
-                    // Eliminamos el mensaje "Escribiendo..."
-                    setTimeout(() => {
-                        const typingMessage = document.querySelector('.bot.typing');
-                        if (typingMessage) {
-                            messagesContainer.removeChild(typingMessage);
-                        }
-                        
-                        // Respuestas preprogramadas basadas en palabras clave
-                        let botResponse = getBotPredefinedResponse(message);
-                        addMessage(botResponse, 'bot');
-                    }, 800); // Pequeña demora para efecto de escritura
-                    
-                } catch (error) {
-                    console.error('Error:', error);
-                    const typingMessage = document.querySelector('.bot.typing');
-                    if (typingMessage) {
-                        messagesContainer.removeChild(typingMessage);
-                    }
-                    addMessage('Lo siento, ha ocurrido un error. Inténtalo de nuevo más tarde.', 'bot');
-                }
-            }
-            
-            function getBotPredefinedResponse(message) {
-                message = message.toLowerCase();
-                
-                // Respuestas preprogramadas basadas en palabras clave
-                if (message.includes('hola') || message.includes('buenos días') || message.includes('buenas')) {
-                    return "¡Hola! Soy el asistente virtual de Cupra Tavascan. ¿En qué puedo ayudarte?";
-                }
-                else if (message.includes('precio') || message.includes('cuesta') || message.includes('costar')) {
-                    return "El precio del Cupra Tavascan comienza desde 49,900€, dependiendo de la configuración y extras seleccionados.";
-                }
-                else if (message.includes('autonomía') || message.includes('batería') || message.includes('kilómetros')) {
-                    return "El Cupra Tavascan tiene una autonomía de hasta 510 km (WLTP) con su batería de 77 kWh.";
-                }
-                else if (message.includes('potencia') || message.includes('caballos') || message.includes('cv')) {
-                    return "El Cupra Tavascan ofrece hasta 340 CV (250 kW) en su versión más potente con tracción total.";
-                }
-                else if (message.includes('velocidad') || message.includes('acelera') || message.includes('aceleración')) {
-                    return "El Cupra Tavascan acelera de 0 a 100 km/h en tan solo 5,6 segundos.";
-                }
-                else if (message.includes('colores') || message.includes('color')) {
-                    return "El Tavascan está disponible en varios colores exclusivos, incluyendo Dusk Blue, Dark Aluminium y Fiord Blue, entre otros.";
-                }
-                else if (message.includes('garantía')) {
-                    return "La garantía del Cupra Tavascan es de 3 años o 100.000 km para el vehículo y 8 años o 160.000 km para la batería.";
-                }
-                else if (message.includes('carga') || message.includes('cargar')) {
-                    return "El Tavascan admite carga rápida DC de hasta 135 kW, permitiendo cargar del 10% al 80% en aproximadamente 30 minutos.";
-                }
-                else if (message.includes('equipamiento') || message.includes('incluye')) {
-                    return "El equipamiento de serie incluye pantalla táctil de 15\", sistema de navegación, conectividad Apple CarPlay y Android Auto, y asistentes de conducción avanzados.";
-                }
-                else if (message.includes('gracias')) {
-                    return "¡De nada! Estoy aquí para ayudarte con cualquier otra pregunta sobre el Cupra Tavascan.";
-                }
-                else {
-                    return "Lo siento, no tengo información específica sobre esa consulta. ¿Puedo ayudarte con algo más sobre el Cupra Tavascan?";
-                }
+        const responseSection = document.getElementById('response');
+        responseSection.innerHTML = `
+            <div class="message-box">
+                ${message}
+            </div>
+        `;
+    }
+
+    // Lógica del carrusel de videos
+    const videos = [
+        "https://www.youtube.com/embed/Sdj9iO8opuU",
+        "https://www.youtube.com/embed/another-video-id", // Agrega más URLs de videos
+    ];
+    let currentVideoIndex = 0;
+
+    function moveCarousel(direction) {
+        currentVideoIndex = (currentVideoIndex + direction + videos.length) % videos.length;
+        document.getElementById('current-video').src = videos[currentVideoIndex];
+    }
+
+    // Lógica del chatbot
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('toggle-chat');
+        const chatBody = document.getElementById('chat-body');
+        const sendBtn = document.getElementById('send-btn');
+        const userInput = document.getElementById('user-input');
+        const messagesContainer = document.getElementById('messages');
+
+        // Toggle chat window
+        toggleBtn.addEventListener('click', function() {
+            chatBody.classList.toggle('chat-hidden');
+        });
+
+        // Enviar mensaje
+        sendBtn.addEventListener('click', sendMessage);
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
             }
         });
+
+        function sendMessage() {
+            const message = userInput.value.trim();
+            if (message === '') return;
+
+            // Añadir mensaje del usuario
+            addMessage(message, 'user');
+            userInput.value = '';
+
+            // Llamar al backend
+            getBotResponse(message);
+        }
+
+        function addMessage(message, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', sender);
+            messageDiv.textContent = message;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        async function getBotResponse(message) {
+            addMessage('Escribiendo...', 'bot typing');
+
+            try {
+                const response = await fetch('http://localhost:3000/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ prompt: message }),
+                });
+
+                const data = await response.json();
+                const typingMessage = document.querySelector('.bot.typing');
+                if (typingMessage) {
+                    messagesContainer.removeChild(typingMessage);
+                }
+
+                addMessage(data.reply, 'bot');
+            } catch (error) {
+                console.error('Error:', error);
+                const typingMessage = document.querySelector('.bot.typing');
+                if (typingMessage) {
+                    messagesContainer.removeChild(typingMessage);
+                }
+                addMessage('Error al conectar con el servidor.', 'bot');
+            }
+        }
+    });
 </script>
 </body>
 </html>

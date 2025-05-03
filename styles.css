@@ -3,7 +3,6 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    background-image: url('https://www.cupraofficial.es/content/dam/public/cupra-website/cars/tavascan/automatic-gallery/x-large/cupra-tavascan-blue-colour-21-inch-copper-black-covers-wheels.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -14,16 +13,39 @@ body {
     text-transform: none;
 
     
-  }
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.cupraofficial.es/content/dam/public/cupra-website/cars/tavascan/automatic-gallery/x-large/cupra-tavascan-blue-colour-21-inch-copper-black-covers-wheels.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    opacity: 0.4; /* Ajusta esto según la opacidad que quieras */
+    z-index: -1;
+}
+
+header {
+    background-color: #121212;
+    padding: 20px;
+    text-align: left;
+    color: #fff;
+}
   
 h1 {
     font-family: 'Montserrat', sans-serif;
-    text-align: center;
+    text-align: left;
     text-transform: uppercase;
-    font-size: 45px;
+    font-size: 65px;
     font-weight: 700;
     margin-top: 30px;
-    color: #000000;
+    color: #ffffff;
 }
 .main-image {
     width: 50%;
@@ -64,4 +86,56 @@ h1 {
     transition: all 0.3s ease;
     font-size: 18px;
     text-align: left;
+}
+
+#video-carousel {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.carousel-videos {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-videos video {
+    width: 300px;
+    margin: 0 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+}
+
+button.prev {
+    left: 10px;
+}
+
+button.next {
+    right: 10px;
+}
+
+button.prev:hover, button.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }

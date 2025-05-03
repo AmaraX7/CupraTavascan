@@ -27,13 +27,13 @@ body::before {
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    opacity: 0.4; /* Ajusta esto según la opacidad que quieras */
+    opacity: 0.7; /* Ajusta esto según la opacidad que quieras */
     z-index: -1;
 }
 
 header {
     background-color: #121212;
-    padding: 20px;
+    padding: 10px;
     text-align: left;
     color: #fff;
 }

@@ -1,79 +1,77 @@
-/* Estilos generales del body con imagen de fondo */
+/* Estilos base con imagen de fondo desde URL */
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-image: url('https://www.google.com/search?sca_esv=d8c2b4a8fa54c828&rlz=1C1VDKB_esES1005ES1005&sxsrf=AHTn8zpC8NtqeaPbCB1hut8XSgWqTL-20w:1746265726310&q=cupra+tavascan&udm=2&fbs=ABzOT_CWdhQLP1FcmU5B0fn3xuWpA-dk4wpBWOGsoR7DG5zJBnsX62dbVmWR6QCQ5QEtPRrN1KFHti9EP_dqC742rxzHZN2hTXlyqRwVALm5wyYBA551sWk_dDG8VALyaujXoB7up3kyQLB59LHGtFRFfP_TfPOiuVSCdEZn8P5syBlupM9O0kQ&sa=X&sqi=2&ved=2ahUKEwivmrPigoeNAxVQK_sDHXIECu4QtKgLegQICBAB&biw=1536&bih=742&dpr=1.25#vhid=tc1axCH1j5lAZM&vssid=mosaic');
+    font-family: 'Montserrat', Arial, sans-serif;
+    background-image: url('https://images.unsplash.com/photo-1620395450364-8428e7a0767b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    color: white;
+    color: #ffffff;
     min-height: 100vh;
     line-height: 1.6;
-}
-
-/* Capa oscura semitransparente para mejorar legibilidad */
-body::before {
+  }
+  
+  /* Capa oscura para mejor legibilidad */
+  body::before {
     content: "";
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
     z-index: -1;
-}
-
-/* Estilos del header */
-header {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 2rem;
+  }
+  
+  /* Cabecera */
+  header {
+    background-color: rgba(0, 46, 99, 0.8); /* Azul Cupra */
+    padding: 1.5rem;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-header h1 {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  header h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* Estilos del contenido principal */
-main {
-    background-color: rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Contenido principal */
+  main {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
     padding: 2rem;
-    margin: 3rem auto;
-    max-width: 800px;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-}
-
-/* Estilos del footer */
-footer {
-    background-color: rgba(0, 0, 0, 0.8);
+    margin: 2rem auto;
+    max-width: 900px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Pie de página */
+  footer {
+    background-color: rgba(0, 46, 99, 0.9);
     padding: 1rem;
     text-align: center;
     position: fixed;
     bottom: 0;
     width: 100%;
     font-size: 0.9rem;
-}
-
-/* Efecto hover para elementos interactivos */
-button, a {
-    transition: all 0.3s ease;
-}
-
-/* Media queries para responsividad */
-@media (max-width: 768px) {
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
     header h1 {
-        font-size: 1.8rem;
+      font-size: 1.8rem;
     }
     
     main {
-        margin: 2rem 1rem;
-        padding: 1.5rem;
+      margin: 1.5rem;
+      padding: 1.5rem;
     }
-}
+  }

@@ -11,8 +11,6 @@ body {
     min-height: 100vh;
     line-height: 1.6;
     text-transform: none;
-
-    
 }
 
 body::before {
@@ -32,10 +30,14 @@ body::before {
 }
 
 header {
-    background-color: #121212;
+    background-color: #aa4baf;
     padding: 10px;
     text-align: left;
     color: #fff;
+}
+
+.logo {
+
 }
   
 h1 {

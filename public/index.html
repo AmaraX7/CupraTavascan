@@ -94,7 +94,7 @@
         // Lógica del carrusel de videos
         const videos = [
             { url: "https://www.youtube.com/embed/Sdj9iO8opuU", description: "Introducción al Cupra Tavascan." },
-            { url: "https://www.youtube.com/embed/another-video-id", description: "Características avanzadas del Cupra Tavascan." }, // Reemplaza con un video real
+            { url: "https://www.youtube.com/embed/VIDEO_ID_AQUI", description: "Características avanzadas del Cupra Tavascan." },
         ];
         let currentVideoIndex = 0;
 
@@ -111,6 +111,11 @@
             const sendBtn = document.getElementById('send-btn');
             const userInput = document.getElementById('user-input');
             const messagesContainer = document.getElementById('messages');
+
+            if (!toggleBtn || !chatBody || !sendBtn || !userInput || !messagesContainer) {
+                console.error('Error: Uno o más elementos del chatbot no se encontraron en el DOM.');
+                return;
+            }
 
             // Toggle chat window
             toggleBtn.addEventListener('click', function() {
@@ -140,37 +145,48 @@
             function addMessage(message, sender) {
                 const messageDiv = document.createElement('div');
                 messageDiv.classList.add('message', sender);
+                if (sender === 'bot-typing') {
+                    messageDiv.classList.add('bot-typing');
+                }
                 messageDiv.textContent = message;
                 messagesContainer.appendChild(messageDiv);
                 messagesContainer.scrollTop = messagesContainer.scrollHeight;
             }
 
             async function getBotResponse(message) {
-                addMessage('Escribiendo...', 'bot typing');
+                addMessage('Escribiendo...', 'bot-typing');
 
                 try {
+                    console.log('Enviando solicitud a /api/chat con message:', message);
                     const response = await fetch('/api/chat', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({ prompt: message }),
+                        body: JSON.stringify({ message: message }), // Asegura que envíe el campo "message"
                     });
 
+                    console.log('Respuesta recibida:', response);
+                    if (!response.ok) {
+                        throw new Error(`Error HTTP: ${response.status} ${response.statusText}`);
+                    }
+
                     const data = await response.json();
-                    const typingMessage = document.querySelector('.message.typing');
+                    console.log('Datos recibidos:', data);
+
+                    const typingMessage = document.querySelector('.bot-typing');
                     if (typingMessage) {
                         messagesContainer.removeChild(typingMessage);
                     }
 
-                    addMessage(data.reply, 'bot');
+                    addMessage(data.text || data.error, 'bot');
                 } catch (error) {
-                    console.error('Error:', error);
-                    const typingMessage = document.querySelector('.message.typing');
+                    console.error('Error en getBotResponse:', error);
+                    const typingMessage = document.querySelector('.bot-typing');
                     if (typingMessage) {
                         messagesContainer.removeChild(typingMessage);
                     }
-                    addMessage('Error al conectar con el servidor.', 'bot');
+                    addMessage(`Error: ${error.message}`, 'bot');
                 }
             }
         });

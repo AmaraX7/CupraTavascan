@@ -14,55 +14,85 @@ const cupraTavascanInfo = {
     equipamiento: 'pantalla táctil de 15", sistema de navegación, conectividad Apple CarPlay y Android Auto, asistentes de conducción avanzados',
 };
 
-// Inicializar OpenAI con la clave de la API
+// Inicializar OpenAI con la clave de la API directamente en el código
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
+    apiKey: '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'});
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
+    console.log('---- INICIO DE /api/chat ----');
+
+    // Solo permitir método POST
     if (req.method !== 'POST') {
-        return res.status(405).json({ reply: 'Método no permitido.' });
-    }
-
-    const { prompt } = req.body;
-
-    if (!prompt) {
-        return res.status(400).json({ reply: 'Por favor, envía una consulta.' });
+        console.log('Método no permitido:', req.method);
+        return res.status(405).json({ error: 'Método no permitido', allowedMethods: ['POST'] });
     }
 
     try {
-        const response = await openai.chat.completions.create({
-            model: 'gpt-3.5-turbo',
-            messages: [
-                {
-                    role: 'system',
-                    content: `
-                        Eres un asistente virtual especializado en el Cupra Tavascan. Responde de manera concisa y amigable en español.
-                        Información sobre el Cupra Tavascan:
-                        - Modelo: ${cupraTavascanInfo.modelo}
-                        - Precio: ${cupraTavascanInfo.precio}
-                        - Autonomía: ${cupraTavascanInfo.autonomia}
-                        - Batería: ${cupraTavascanInfo.bateria}
-                        - Potencia: ${cupraTavascanInfo.potencia}
-                        - Aceleración: ${cupraTavascanInfo.aceleracion}
-                        - Colores disponibles: ${cupraTavascanInfo.colores.join(', ')}
-                        - Garantía: ${cupraTavascanInfo.garantia}
-                        - Carga: ${cupraTavascanInfo.carga}
-                        - Equipamiento: ${cupraTavascanInfo.equipamiento}
-                    `,
-                },
-                {
-                    role: 'user',
-                    content: prompt,
-                },
-            ],
-            max_tokens: 150,
-            temperature: 0.7,
-        });
+        console.log('---- SOLICITUD A /api/chat ----');
+        console.log('Headers:', JSON.stringify(req.headers, null, 2));
+        console.log('Body:', JSON.stringify(req.body, null, 2));
 
-        res.status(200).json({ reply: response.choices[0].message.content.trim() });
-    } catch (err) {
-        console.error('Error en la API de OpenAI:', err);
-        res.status(500).json({ reply: 'Error al contactar a la API. Inténtalo de nuevo.' });
+        // Verificar el cuerpo de la solicitud
+        const { message } = req.body;
+        if (!message) {
+            console.log('Error: Falta el campo "message" en el body');
+            return res.status(400).json({ error: 'Se requiere un campo "message" en el body' });
+        }
+
+        try {
+            console.log('Enviando solicitud a OpenAI con message:', message);
+            const response = await openai.chat.completions.create({
+                model: 'gpt-3.5-turbo',
+                messages: [
+                    {
+                        role: 'system',
+                        content: `
+                            Eres un asistente virtual especializado en el Cupra Tavascan. Responde de manera concisa y amigable en español.
+                            Información sobre el Cupra Tavascan:
+                            - Modelo: ${cupraTavascanInfo.modelo}
+                            - Precio: ${cupraTavascanInfo.precio}
+                            - Autonomía: ${cupraTavascanInfo.autonomia}
+                            - Batería: ${cupraTavascanInfo.bateria}
+                            - Potencia: ${cupraTavascanInfo.potencia}
+                            - Aceleración: ${cupraTavascanInfo.aceleracion}
+                            - Colores disponibles: ${cupraTavascanInfo.colores.join(', ')}
+                            - Garantía: ${cupraTavascanInfo.garantia}
+                            - Carga: ${cupraTavascanInfo.carga}
+                            - Equipamiento: ${cupraTavascanInfo.equipamiento}
+                        `,
+                    },
+                    {
+                        role: 'user',
+                        content: message,
+                    },
+                ],
+                max_tokens: 150,
+                temperature: 0.7,
+            });
+
+            console.log('Respuesta de OpenAI recibida:', response.choices[0].message.content);
+            return res.status(200).json({
+                text: response.choices[0].message.content.trim(),
+                timestamp: new Date().toISOString()
+            });
+
+        } catch (processingError) {
+            console.error('Error en la API de OpenAI:', processingError.message);
+            if (processingError.response) {
+                console.error('Detalles del error:', processingError.response.data);
+            }
+            return res.status(500).json({
+                error: 'Error al contactar a la API de OpenAI',
+                details: processingError.message
+            });
+        }
+
+    } catch (error) {
+        console.error('Error no manejado en /api/chat:', error);
+        return res.status(500).json({
+            error: 'Error interno del servidor',
+            message: error.message,
+            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
+        });
     }
-};
+}

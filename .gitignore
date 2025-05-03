@@ -16,3 +16,4 @@ build/
 
 # Ignorar archivos de sistema de Windows
 Thumbs.db
+.vercel

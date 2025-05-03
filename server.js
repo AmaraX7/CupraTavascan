@@ -13,8 +13,8 @@ app.use(express.json());
 
 // Inicializar OpenAI con la clave de la API
 const openai = new OpenAI({
-    apiKey: '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'
-});
+    apiKey: process.env.OPENAI_API_KEY, // Usamos la clave del archivo .env
+  });
 // Información del Cupra Tavascan para el contexto
 const cupraTavascanInfo = {
     modelo: 'Cupra Tavascan',

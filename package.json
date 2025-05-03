@@ -9,7 +9,6 @@
   "version": "1.0.0",
   "description": "The objective is to allow customers to familiarize themselves with the vehicle's features during the period from when they place an order until the vehicle is delivered.",
   "main": "scripts.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"

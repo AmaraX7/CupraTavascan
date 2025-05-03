@@ -31,7 +31,11 @@ function moveCarousel(direction) {
 
     // Cambiar el video mostrado
     const videoFrame = document.getElementById("current-video");
-    videoFrame.src = videoUrls[currentVideoIndex];
+    if (videoFrame) {
+        videoFrame.src = videoUrls[currentVideoIndex];
+    } else {
+        console.error("Elemento con ID 'current-video' no encontrado.");
+    }
 
     // Cambiar la descripción del video
     const videoDescription = document.getElementById("video-description");
@@ -43,9 +47,13 @@ function moveCarousel(direction) {
     }
 }
 
-
 function showInfo(number) {
     const infoBox = document.getElementById('info-box');
+    if (!infoBox) {
+        console.error("Elemento con ID 'info-box' no encontrado.");
+        return;
+    }
+    
     let infoText = '';
 
     switch (number) {
@@ -98,6 +106,7 @@ function showInfo(number) {
 function cambiarPestaña(id) {
     // Obtener todas las pestañas
     const pestañas = document.querySelectorAll('.pestaña');
+    const tabTitle = document.getElementById('tab-title');
 
     // Ocultar todas las pestañas
     pestañas.forEach(pestaña => {
@@ -111,11 +120,27 @@ function cambiarPestaña(id) {
     } else {
         console.error(`No se encontró la pestaña con ID: pestaña-${id}`);
     }
+
+    // Para mostrar el título de la pestaña "Inicio"
+    if (id === 'inicio') {
+        if (tabTitle) {
+            tabTitle.style.display = 'block';
+        } else {
+            console.error("Elemento con ID 'tab-title' no encontrado.");
+        }
+    } else {
+        if (tabTitle) {
+            tabTitle.style.display = 'none';
+        }
+    }
 }
 
-
-  function startCountdown(targetDate) {
+function startCountdown(targetDate) {
     const timerElement = document.getElementById("timer");
+    if (!timerElement) {
+        console.error("Elemento con ID 'timer' no encontrado.");
+        return;
+    }
 
     function updateCountdown() {
         const now = new Date().getTime();
@@ -137,8 +162,57 @@ function cambiarPestaña(id) {
 
     const interval = setInterval(updateCountdown, 1000);
     updateCountdown(); // Llama inmediatamente para evitar el retraso inicial
+    console.log("El script de la cuenta atrás se está ejecutando.");
 }
 
-// Establece la fecha objetivo (por ejemplo, 1 de junio de 2025)
-const targetDate = new Date("2025-06-01T00:00:00").getTime();
-startCountdown(targetDate);
+// Esperar a que el DOM esté completamente cargado
+window.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM cargado completamente");
+    
+    // Configurar listeners para los botones del carrusel
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    
+    if (prevButton) {
+        prevButton.addEventListener('click', function() {
+            moveCarousel(-1);
+        });
+        console.log("Botón 'prev-button' configurado");
+    } else {
+        console.error("Botón con ID 'prev-button' no encontrado");
+    }
+    
+    if (nextButton) {
+        nextButton.addEventListener('click', function() {
+            moveCarousel(1);
+        });
+        console.log("Botón 'next-button' configurado");
+    } else {
+        console.error("Botón con ID 'next-button' no encontrado");
+    }
+    
+    // Configurar listeners para los botones de información
+    for (let i = 1; i <= 13; i++) {
+        const infoButton = document.getElementById(`info-button-${i}`);
+        if (infoButton) {
+            infoButton.addEventListener('click', function() {
+                showInfo(i);
+            });
+            console.log(`Botón 'info-button-${i}' configurado`);
+        }
+    }
+    
+    // Configurar listeners para los botones de pestañas
+    const tabButtons = document.querySelectorAll('[id^="tab-button-"]');
+    tabButtons.forEach(button => {
+        const id = button.id.replace('tab-button-', '');
+        button.addEventListener('click', function() {
+            cambiarPestaña(id);
+        });
+        console.log(`Botón 'tab-button-${id}' configurado`);
+    });
+    
+    // Iniciar la cuenta regresiva
+    const targetDate = new Date("2025-06-01T00:00:00").getTime();
+    startCountdown(targetDate);
+});

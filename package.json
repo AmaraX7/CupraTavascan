@@ -3,11 +3,15 @@
     "version": "1.0.0",
     "description": "Web para Cupra Tavascan con chatbot",
     "main": "api/chat.js",
+    "scripts": {
+      "dev": "node api/chat.js"
+    },
     "dependencies": {
-        "node-fetch": "^3.3.2",
-        "openai": "^4.0.0"
+      "node-fetch": "^3.3.2",
+      "openai": "^4.0.0"
     },
     "engines": {
-        "node": ">=14.0.0"
+      "node": ">=14.0.0"
     }
-}
+  }
+  

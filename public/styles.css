@@ -31,7 +31,7 @@ body::before {
 
 header {
     background-color: #20202a;
-    padding: 4px 8px;
+    padding: 8px 16px;
     text-align: left;
     color: #fff;
     position: relative;
@@ -42,33 +42,44 @@ header {
 .header-content{
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .logo {
     width: 120px; /* ajusta el tamaño */
     height: auto; /* mantiene proporciones */
-    position: absolute;
+    position: static;
     /*margin: 20px 0;
     top: 20px; */
     right: 20px;
 }
+  
   
 h1 {
     font-family: 'Montserrat', sans-serif;
     text-align: left;
     text-transform: uppercase;
     font-size: 50px;
-    font-weight: 700;
+    font-weight: 300;
     margin: 5px;
     padding: 5px;
     color: #ffffff;
     left: 20px;
 }
 
+#Overview{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 5px;
+    padding: 25px;
+    color: #20202a;
+}
+
 .image-container {
     width: 100%;
-    max-width: 800px; /* ajusta según tu diseño */
+    max-width: 1000px; /* ajusta según tu diseño */
     align-items: center;
     position: relative;
     /*display: flex;
@@ -87,15 +98,16 @@ h1 {
     color: rgb(0, 0, 0);
     border: none;
     border-radius: 50%;
-    width: 27px;
-    height: 27px;
+    width: 30px;
+    height: 30px;
     cursor: pointer;
     text-align: center;
-    line-height: 27px;
+    line-height: 30px;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 14px;
     transform: translate(-50%, 0%);
 }
+
 .info-box {
     margin-top: 20px;
     padding: 10px;
@@ -163,8 +175,8 @@ h1 {
 }
 
 .carousel-videos iframe {
-    height: 600px;
-    width: 1000px;
+    height: 500px;
+    width: 900px;
 }
 
 button.prev, button.next {
@@ -174,10 +186,11 @@ button.prev, button.next {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    padding: 10px;
+    padding: 25px;
     cursor: pointer;
     z-index: 10;
     border-radius: 50%;
+    font-size: 24px;
 }
 
 button.prev {
@@ -203,16 +216,25 @@ button.prev:hover, button.next:hover {
 /* CONTADOR STYLES */
 
 #countdown {
-    text-align: center;
+    text-align: flex-start;
     margin: 50px 0;
     font-family: 'Montserrat', sans-serif;
 }
 
 #timer {
-    font-size: 24px;
+    font-size: 36px; /* Tamaño más grande para destacar */
     font-weight: bold;
-    color: #333;
+    color: red; /* Color rojo */
+    background-color: rgba(255, 0, 0, 0.1); /* Fondo rojo claro */
+    padding: 20px;
+    border: 2px solid red; /* Borde rojo */
+    border-radius: 10px; /* Bordes redondeados */
+    display: inline-block; /* Para que el diseño sea compacto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para resaltar */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra en el texto */
+    text-align: flex-start;
 }
+
 
 /* CHATBOT STYLES */
 #chatbot-container {
@@ -314,14 +336,17 @@ button.prev:hover, button.next:hover {
 .chat-input button:hover {
     background-color: #d13c00;
 }
+
 .pestaña {
     display: none;
     text-align: center;
+    background-attachment: fixed;
     padding: 30px;
   }
   
 .pestaña.activa {
     display: block;
+    background-attachment: fixed;
 }
   
   body.fondo-dos::before {
@@ -343,6 +368,7 @@ button.prev:hover, button.next:hover {
 
 .tab-bar .tab-title {
     justify-content: center;
+    align-items: center;
     color: white;
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;

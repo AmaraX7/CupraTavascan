@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<script src="scripts.js"></script>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -20,74 +19,65 @@
         <button onclick="cambiarPestaña('inicio')">Home</button>
         <button onclick="cambiarPestaña('uno')">Interior</button>
         <button onclick="cambiarPestaña('dos')">Videos</button>
-        <h2>Welcome to Cupra Tavascan Experience</h2>
+        <div id="tab-title">Welcome to Cupra Tavascan Experience</div>
     </nav>
 
-  
     <section id="response">
         <!-- Aquí aparecerán los mensajes -->
     </section>
 
       
-      <div id="pestaña-inicio" class="pestaña activa" style="display: block;">
-        
+    <div id="pestaña-inicio" class="pestaña activa" style="display: block;">
         <section id="countdown">
             <h2>Cuenta regresiva para la llegada de tu coche:</h2>
             <p id="timer">Cargando...</p>
         </section>
     </div>
       
-      <div id="pestaña-uno" class="pestaña">
-        <h2>Overview (left hand drive)
+    <div id="pestaña-uno" class="pestaña">
+        <h2>Overview (left hand drive)</h2>
             
-            <section>
-                <div class="image-container">
-                    <img src="images/parteFrontal.jpg" alt="Parte Frontal" class="dashboard-image">
-                    
-                    <!-- Botones flotantes -->
-                    <button class="hotspot" style="top: 1.6%; left: 11.7%;" onclick="showInfo(1)">1</button>
-                    <button class="hotspot" style="top: 1.6%; left: 15.5%;" onclick="showInfo(2)">2</button>
-                    <button class="hotspot" style="top: 1.6%; left: 19.5%;" onclick="showInfo(3)">3</button>
-                    <button class="hotspot" style="top: 1.6%; left: 28.5%;" onclick="showInfo(4)">4</button>
-                    <button class="hotspot" style="top: 1.6%; left: 32.5%;" onclick="showInfo(5)">5</button>
-                    <button class="hotspot" style="top: 1.6%; left: 38.4%;" onclick="showInfo(6)">6</button>
-                    <button class="hotspot" style="top: 1.6%; left: 43%;" onclick="showInfo(5)">5</button>
-                    <button class="hotspot" style="top: 1.6%; left: 47%;" onclick="showInfo(7)">7</button>
-                    <button class="hotspot" style="top: 1.6%; left: 63.7%;" onclick="showInfo(8)">8</button>
-                    <button class="hotspot" style="top: 89.7%; left: 17.6%;" onclick="showInfo(9)">9</button>
-                    <button class="hotspot" style="top: 89.7%; left: 28%;" onclick="showInfo(10)">10</button>
-                    <button class="hotspot" style="top: 89.7%; left: 33%;" onclick="showInfo(11)">11</button>
-                    <button class="hotspot" style="top: 89.7%; left: 40%;" onclick="showInfo(12)">12</button>
-                    <button class="hotspot" style="top: 89.7%; left: 67.5%;" onclick="showInfo(13)">13</button>
-                </div>
+        <section>
+            <div class="image-container">
+                <img src="images/parteFrontal.jpg" alt="Parte Frontal" class="dashboard-image">
                 
-                <div id="info-box" class="info-box">
-                    Click on a number to see more information.
-                </div>        
-            </section>
-            
-        </h2>
-      </div>
-      
-      <div id="pestaña-dos" class="pestaña" style="display: none;">
-    
-        <!-- Carrusel de Videos -->
-        <section id="video-carousel">
-            <h2>Tecnologias Tavascan</h2>
-            <div class="carousel">
-                <button class="prev" onclick="moveCarousel(-1)">❮</button>
-                <div class="carousel-videos">
-                    <iframe id="current-video" src="https://www.youtube.com/embed/Sdj9iO8opuU" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <button class="next" onclick="moveCarousel(1)">❯</button>
+                <!-- Botones flotantes -->
+                <button class="hotspot" style="top: 1.6%; left: 11.7%;" onclick="showInfo(1)">1</button>
+                <button class="hotspot" style="top: 1.6%; left: 15.5%;" onclick="showInfo(2)">2</button>
+                <button class="hotspot" style="top: 1.6%; left: 19.5%;" onclick="showInfo(3)">3</button>
+                <button class="hotspot" style="top: 1.6%; left: 28.5%;" onclick="showInfo(4)">4</button>
+                <button class="hotspot" style="top: 1.6%; left: 32.5%;" onclick="showInfo(5)">5</button>
+                <button class="hotspot" style="top: 1.6%; left: 38.4%;" onclick="showInfo(6)">6</button>
+                <button class="hotspot" style="top: 1.6%; left: 43%;" onclick="showInfo(5)">5</button>
+                <button class="hotspot" style="top: 1.6%; left: 47%;" onclick="showInfo(7)">7</button>
+                <button class="hotspot" style="top: 1.6%; left: 63.7%;" onclick="showInfo(8)">8</button>
+                <button class="hotspot" style="top: 89.7%; left: 17.6%;" onclick="showInfo(9)">9</button>
+                <button class="hotspot" style="top: 89.7%; left: 28%;" onclick="showInfo(10)">10</button>
+                <button class="hotspot" style="top: 89.7%; left: 33%;" onclick="showInfo(11)">11</button>
+                <button class="hotspot" style="top: 89.7%; left: 40%;" onclick="showInfo(12)">12</button>
+                <button class="hotspot" style="top: 89.7%; left: 67.5%;" onclick="showInfo(13)">13</button>
             </div>
-            <p id="video-description">Sistema de Aparcamiento en Línea</p>
+            
+            <div id="info-box" class="info-box">
+                Click on a number to see more information.
+            </div>        
         </section>
     </div>
       
+    <div id="pestaña-dos" class="pestaña" style="display: none;">
+        <!-- Carrusel de Videos -->
+        <section id="video-carousel">
+            <p id="video-description">Sistema de Aparcamiento en Línea</p>
+            <div class="carousel">
+                <button class="prev" id="prev-button">❮</button>
+                <div class="carousel-videos">
+                    <iframe id="current-video" src="https://www.youtube.com/embed/Sdj9iO8opuU" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <button class="next" id="next-button">❯</button>
+            </div>
+        </section>
+    </div>
       
-
-
     <!-- Chatbot -->
     <div id="chatbot-container">
         <div class="chat-header">
@@ -112,30 +102,6 @@
                     ${message}
                 </div>
             `;
-        }
-
-        // Lógica del mapa interactivo
-        function showInfo(area) {
-            const infoBox = document.getElementById('info-box');
-            const info = {
-                1: 'Pantalla táctil de 15": Controla el sistema multimedia y la navegación.',
-                2: 'Asistente de voz: Usa comandos de voz para ajustar configuraciones.',
-                3: 'Panel de instrumentos digital: Muestra información clave del vehículo.',
-            };
-            infoBox.textContent = info[area] || 'Haz clic para ver su explicación.';
-        }
-
-        // Lógica del carrusel de videos
-        const videos = [
-            { url: "https://www.youtube.com/embed/Sdj9iO8opuU", description: "Introducción al Cupra Tavascan." },
-            { url: "https://www.youtube.com/embed/VIDEO_ID_AQUI", description: "Características avanzadas del Cupra Tavascan." },
-        ];
-        let currentVideoIndex = 0;
-
-        function moveCarousel(direction) {
-            currentVideoIndex = (currentVideoIndex + direction + videos.length) % videos.length;
-            document.getElementById('current-video').src = videos[currentVideoIndex].url;
-            document.getElementById('video-description').textContent = videos[currentVideoIndex].description;
         }
 
         // Lógica del chatbot
@@ -197,7 +163,7 @@
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({ message: message }), // Asegura que envíe el campo "message"
+                        body: JSON.stringify({ message: message }),
                     });
 
                     console.log('Respuesta recibida:', response);
@@ -225,5 +191,8 @@
             }
         });
     </script>
+
+    <!-- Cargar el script externo al final para que tenga acceso a todos los elementos del DOM -->
+    <script src="scripts.js"></script>
 </body>
 </html>

@@ -1,143 +1,102 @@
-const videoUrls = [
-    "https://www.youtube.com/embed/Sdj9iO8opuU",
-    "https://www.youtube.com/embed/NXiGN_T-M9U",
-    "https://www.youtube.com/embed/RdcoqVPYYug",
-    "https://www.youtube.com/embed/TMls2lJvD68",
-    "https://www.youtube.com/embed/cLeqpI9bcII",
-    "https://www.youtube.com/embed/mMrQCWabyO4",
-];
-
-const videoDescriptions = [
-    "Sistema de Aparcamiento en Linea",
-    "Sistema de Aparcamiento en Bateria",
-    "Control de Crucero",
-    "Climatización",
-    "Sistema de Navegación",
-    "Aviso de Salida de Carril",
-];
-
-let currentVideoIndex = 0;
-
-function moveCarousel(direction) {
-    // Actualizar el índice del video actual
-    currentVideoIndex += direction;
-
-    // Asegurarse de que el índice esté dentro de los límites
-    if (currentVideoIndex < 0) {
-        currentVideoIndex = videoUrls.length - 1;
-    } else if (currentVideoIndex >= videoUrls.length) {
-        currentVideoIndex = 0;
-    }
-
-    // Cambiar el video mostrado
-    const videoFrame = document.getElementById("current-video");
-    videoFrame.src = videoUrls[currentVideoIndex];
-
-    // Cambiar la descripción del video
-    const videoDescription = document.getElementById("video-description");
-    if (videoDescription) {
-        videoDescription.textContent = videoDescriptions[currentVideoIndex];
-        console.log(`Descripción actualizada: ${videoDescriptions[currentVideoIndex]}`);
-    } else {
-        console.error("Elemento con ID 'video-description' no encontrado.");
-    }
-}
-
-function showInfo(number) {
-    const infoBox = document.getElementById('info-box');
-    let infoText = '';
-
-    switch (number) {
-        case 1:
-            infoText = '1: Door handle.';
-            break;
-        case 2:
-            infoText = '2: Central locking -> Exterior mirror adjustment and power windows.';
-            break;
-        case 3:
-            infoText = '3: Lightning control';
-            break;
-        case 4:
-            infoText = '4: Turn signal and main beam lever';
-            break;
-        case 5:
-            infoText = '5: Multifunction steering wheel control panels';
-            break;
-        case 6:
-            infoText = '6: Digital Cockpit and control lamps';
-            break;
-        case 7:
-            infoText = '7: Gear selector and Electronic parking brake';
-            break;
-        case 8:
-            infoText = '8: Infotainment system';
-            break;
-        case 9:
-            infoText = '9: Open bonnet lever';
-            break;
-        case 10:
-            infoText = '10: Fuses';
-            break;
-        case 11:
-            infoText = '11: Steering wheel adjustment';
-            break;
-        case 12:
-            infoText = '12: Steering wheel with horn and driver front airbag';
-            break;
-        case 13:
-            infoText = '13: Hazard warning lights';
-            break;
-        default:
-            infoText = 'Undefined element.';
-    }
-
-    infoBox.textContent = infoText;
-}
-
-function cambiarPestaña(id) {
-    // Obtener todas las pestañas
-    const pestañas = document.querySelectorAll('.pestaña');
-
-    // Ocultar todas las pestañas
-    pestañas.forEach(pestaña => {
-        pestaña.style.display = 'none';
-    });
-
-    // Mostrar solo la pestaña seleccionada
-    const pestañaActiva = document.getElementById(`pestaña-${id}`);
-    if (pestañaActiva) {
-        pestañaActiva.style.display = 'block';
-    } else {
-        console.error(`No se encontró la pestaña con ID: pestaña-${id}`);
-    }
-}
+<!DOCTYPE html>
+<script src="scripts.js"></script>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Web Cupra Tavascan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Know your Cupra Tavascan</h1>
+            <a href="https://www.cupraofficial.es/" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Cupra_White.png" alt="Logo Cupra" class="logo">
+            </a>
+        </div>
+    </header>
 
 
-  function startCountdown(targetDate) {
-    const timerElement = document.getElementById("timer");
+    <nav class="tab-bar">
+        <button onclick="cambiarPestaña('inicio')">Home</button>
+        <button onclick="cambiarPestaña('uno')">Interior</button>
+        <button onclick="cambiarPestaña('dos')">Videos</button>
+        <div id="tab-title" style="display: none;">Welcome to Cupra Tavascan Experience</div>
+    </nav>
 
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
+      <div id="pestaña-inicio" class="pestaña activa" style="display: block;">
+        
+        <section id="countdown">
+            <h2>Countdown for car arrival:</h2>
+            <p id="timer"></p>
+        </section>
+    </div>
+      
+      <div id="pestaña-uno" class="pestaña">
+        <h3 id= "Overview">Overview (left hand drive)</h3>
+            
+            <section>
+                <div class="image-container">
+                    <img src="images/parteFrontal.jpg" alt="Parte Frontal" class="dashboard-image">
+                    
+                    <!-- Botones flotantes -->
+                    <button class="hotspot" style="top: 1.6%; left: 11.7%;" onclick="showInfo(1)">1</button>
+                    <button class="hotspot" style="top: 1.6%; left: 15.5%;" onclick="showInfo(2)">2</button>
+                    <button class="hotspot" style="top: 1.6%; left: 19.5%;" onclick="showInfo(3)">3</button>
+                    <button class="hotspot" style="top: 1.6%; left: 28.5%;" onclick="showInfo(4)">4</button>
+                    <button class="hotspot" style="top: 1.6%; left: 32.5%;" onclick="showInfo(5)">5</button>
+                    <button class="hotspot" style="top: 1.6%; left: 38.4%;" onclick="showInfo(6)">6</button>
+                    <button class="hotspot" style="top: 1.6%; left: 43%;" onclick="showInfo(5)">5</button>
+                    <button class="hotspot" style="top: 1.6%; left: 47%;" onclick="showInfo(7)">7</button>
+                    <button class="hotspot" style="top: 1.6%; left: 63.7%;" onclick="showInfo(8)">8</button>
+                    <button class="hotspot" style="top: 89.7%; left: 17.6%;" onclick="showInfo(9)">9</button>
+                    <button class="hotspot" style="top: 89.7%; left: 28%;" onclick="showInfo(10)">10</button>
+                    <button class="hotspot" style="top: 89.7%; left: 33%;" onclick="showInfo(11)">11</button>
+                    <button class="hotspot" style="top: 89.7%; left: 40%;" onclick="showInfo(12)">12</button>
+                    <button class="hotspot" style="top: 89.7%; left: 67.5%;" onclick="showInfo(13)">13</button>
+                </div>
+                
+                <div id="info-box" class="info-box">
+                    Click on a number to see more information.
+                </div>        
+            </section>
+            
+        </h3>
+      </div>
+      
+      <div id="pestaña-dos" class="pestaña" style="display: none;">
+    
+        <!-- Carrusel de Videos -->
+        <section id="video-carousel">
+            <p id="video-description">Sistema de Aparcamiento en Línea</p>
+            <div class="carousel">
+                <button class="prev" onclick="moveCarousel(-1)">❮</button>
+                <div class="carousel-videos">
+                    <iframe id="current-video" src="https://www.youtube.com/embed/Sdj9iO8opuU" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <button class="next" onclick="moveCarousel(1)">❯</button>
+            </div>
+        </section>
+    </div>
+      
+      
 
-        if (distance < 0) {
-            timerElement.textContent = "¡Tu coche ha llegado!";
-            clearInterval(interval);
-            return;
-        }
+    <!-- Chatbot -->
+    <div id="chatbot-container">
+        <div class="chat-header">
+            <h3>Chatbot Cupra Tavascan</h3>
+            <button id="toggle-chat">Abrir/Cerrar</button>
+        </div>
+        <div id="chat-body" class="chat-body">
+            <div id="messages" class="messages"></div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Escribe tu pregunta...">
+                <button id="send-btn">Enviar</button>
+            </div>
+        </div>
+    </div>
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        timerElement.textContent = `${days} días, ${hours} horas, ${minutes} minutos, ${seconds} segundos`;
-    }
-
-    const interval = setInterval(updateCountdown, 1000);
-    updateCountdown(); // Llama inmediatamente para evitar el retraso inicial
-}
-
-// Establece la fecha objetivo (por ejemplo, 1 de junio de 2025)
-const targetDate = new Date("2025-06-01T00:00:00").getTime();
-startCountdown(targetDate);
+    <script src="scripts.js"></script>
+</body>
+</html>

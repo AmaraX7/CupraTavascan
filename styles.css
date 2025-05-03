@@ -34,12 +34,15 @@ header {
     padding: 10px;
     text-align: left;
     color: #fff;
+    position: relative;
 }
 
 .logo {
-    width: 150px; /* ajusta el tamaño */
+    width: 60px; /* ajusta el tamaño */
     height: auto; /* mantiene proporciones */
     margin: 20px 0;
+    top: 20px;
+    right: 20px;
 }
   
 h1 {

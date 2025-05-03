@@ -14,9 +14,10 @@ const cupraTavascanInfo = {
     equipamiento: 'pantalla táctil de 15", sistema de navegación, conectividad Apple CarPlay y Android Auto, asistentes de conducción avanzados',
 };
 
-// Inicializar OpenAI con la clave de la API directamente en el código
+// Inicializar OpenAI con la clave de la API desde una variable de entorno
 const openai = new OpenAI({
-    apiKey: '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'});
+    apiKey: process.env.OPENAI_API_KEY,
+});
 
 export default async function handler(req, res) {
     console.log('---- INICIO DE /api/chat ----');
@@ -37,6 +38,12 @@ export default async function handler(req, res) {
         if (!message) {
             console.log('Error: Falta el campo "message" en el body');
             return res.status(400).json({ error: 'Se requiere un campo "message" en el body' });
+        }
+
+        // Verificar la clave de la API
+        if (!process.env.OPENAI_API_KEY) {
+            console.log('Error: OPENAI_API_KEY no está configurada');
+            return res.status(500).json({ error: 'Error de configuración del servidor: Clave de API no encontrada.' });
         }
 
         try {

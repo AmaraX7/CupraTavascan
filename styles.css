@@ -30,19 +30,26 @@ body::before {
 }
 
 header {
-    background-color: #aa4baf;
+    background-color: #6d6c90;
     padding: 10px;
     text-align: left;
     color: #fff;
     position: relative;
 }
 
+.header-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .logo {
     width: 60px; /* ajusta el tamaño */
     height: auto; /* mantiene proporciones */
-    margin: 20px 0;
+    position: absolute;
+    /*margin: 20px 0;
     top: 20px;
-    right: 20px;
+    right: 20px;*/
 }
   
 h1 {

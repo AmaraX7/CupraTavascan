@@ -69,6 +69,20 @@ h1 {
     margin: 20px 0;
 }
 
+.dashboard-image {
+    width: 100%;
+    max-width: 800px;
+}
+
+.info-box {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid #ff4800;
+    background-color: #f5f5f5;
+    font-size: 16px;
+    font-weight: bold;
+}
+
 .buttons button {
     margin: 10px;
     padding: 10px 20px;
@@ -156,6 +170,14 @@ button.next {
 
 button.prev:hover, button.next:hover {
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+#video-description {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
 }
 
 /* CHATBOT STYLES */

@@ -5,6 +5,13 @@ const videoUrls = [
     "https://www.youtube.com/embed/XubUlnIh1I"
 ];
 
+const videoDescriptions = [
+    "Descripción del video 1: Introducción al Cupra Tavascan.",
+    "Descripción del video 2: Características del diseño exterior.",
+    "Descripción del video 3: Tecnología y conectividad del vehículo.",
+    "Descripción del video 4: Experiencia de conducción eléctrica."
+];
+
 let currentVideoIndex = 0;
 
 function moveCarousel(direction) {
@@ -21,4 +28,13 @@ function moveCarousel(direction) {
     // Cambiar el video mostrado
     const videoFrame = document.getElementById("current-video");
     videoFrame.src = videoUrls[currentVideoIndex];
+
+    // Cambiar la descripción del video
+    const videoDescription = document.getElementById("video-description");
+    videoDescription.textContent = videoDescriptions[currentVideoIndex];
+}
+
+
+function showInfo(num){
+    
 }

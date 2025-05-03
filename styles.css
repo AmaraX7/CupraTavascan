@@ -143,8 +143,8 @@ h1 {
 
 .carousel-videos iframe {
     width: 100%;
-    max-width: 800px; /* Ajusta según el diseño */
-    height: 450px; /* Ajusta según el diseño */
+    max-width: 500px; /* Ajusta según el diseño */
+    height: 1000px; /* Ajusta según el diseño */
 }
 
 button.prev, button.next {

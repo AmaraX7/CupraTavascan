@@ -44,7 +44,7 @@ header {
 }
 
 .logo {
-    width: 100px; /* ajusta el tamaño */
+    width: 120px; /* ajusta el tamaño */
     height: auto; /* mantiene proporciones */
     position: absolute;
     margin: 20px 0;

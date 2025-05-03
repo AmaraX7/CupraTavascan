@@ -1,19 +1,15 @@
 {
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
-    "express": "^5.1.0",
-    "openai": "^4.97.0"
-  },
-  "name": "cupratavascan",
-  "version": "1.0.0",
-  "description": "The objective is to allow customers to familiarize themselves with the vehicle's features during the period from when they place an order until the vehicle is delivered.",
-  "main": "scripts.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "name": "cupra-tavascan",
+    "version": "1.0.0",
+    "description": "Web para Cupra Tavascan con chatbot",
+    "main": "api/chat.js",
+    "scripts": {
+        "start": "node api/chat.js"
+    },
+    "dependencies": {
+        "openai": "^4.0.0"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    }
 }

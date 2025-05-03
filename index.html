@@ -2,18 +2,33 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Proyecto</title>
+    <title>Mi Web Cupra Tavascan</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Bienvenido a Cupra Tavascan</h1>
+        <h1>Bienvenido al Cupra Tavascan</h1>
     </header>
-    <main>
-        <p>Este es el inicio de tu proyecto. ¡Buena suerte!</p>
-    </main>
-    <footer>
-        <p>&copy; 2025 Cupra Tavascan</p>
-    </footer>
+
+    <section>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Cupra_Tavascan.jpg/640px-Cupra_Tavascan.jpg" alt="Cupra Tavascan" class="main-image">
+        <p>Descubre el nuevo coche eléctrico con diseño innovador y tecnología de punta.</p>
+    </section>
+
+    <section class="buttons">
+        <button onclick="showMessage('El modo ECO optimiza la energía para máxima autonomía.')">¿Qué es el modo ECO?</button>
+        <button onclick="showMessage('El sistema multimedia incluye conectividad Bluetooth y Apple CarPlay.')">¿Cómo conecto mi móvil?</button>
+    </section>
+
+    <section id="response">
+        <!-- Aquí aparecerán los mensajes -->
+    </section>
+
+    <script>
+        function showMessage(message) {
+            const responseSection = document.getElementById('response');
+            responseSection.textContent = message;
+        }
+    </script>
 </body>
 </html>

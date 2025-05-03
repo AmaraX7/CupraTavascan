@@ -1,6 +1,4 @@
-const { OpenAI } = require('openai');
-
-// Información del Cupra Tavascan para el contexto
+// Información del Cupra Tavascan
 const cupraTavascanInfo = {
     modelo: 'Cupra Tavascan',
     precio: 'desde 49,900€',
@@ -12,94 +10,74 @@ const cupraTavascanInfo = {
     garantia: '3 años o 100.000 km (vehículo), 8 años o 160.000 km (batería)',
     carga: 'carga rápida DC de hasta 135 kW, del 10% al 80% en aproximadamente 30 minutos',
     equipamiento: 'pantalla táctil de 15", sistema de navegación, conectividad Apple CarPlay y Android Auto, asistentes de conducción avanzados',
-};
-
-// Inicializar OpenAI con la clave de la API desde una variable de entorno
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
-
-export default async function handler(req, res) {
-    console.log('---- INICIO DE /api/chat ----');
-
-    // Solo permitir método POST
+  };
+  
+  export default function handler(req, res) {
+    // Solo permitir solicitudes POST
     if (req.method !== 'POST') {
-        console.log('Método no permitido:', req.method);
-        return res.status(405).json({ error: 'Método no permitido', allowedMethods: ['POST'] });
+      return res.status(405).json({ error: 'Método no permitido' });
     }
-
+  
     try {
-        console.log('---- SOLICITUD A /api/chat ----');
-        console.log('Headers:', JSON.stringify(req.headers, null, 2));
-        console.log('Body:', JSON.stringify(req.body, null, 2));
-
-        // Verificar el cuerpo de la solicitud
-        const { message } = req.body;
-        if (!message) {
-            console.log('Error: Falta el campo "message" en el body');
-            return res.status(400).json({ error: 'Se requiere un campo "message" en el body' });
-        }
-
-        // Verificar la clave de la API
-        if (!process.env.OPENAI_API_KEY) {
-            console.log('Error: OPENAI_API_KEY no está configurada');
-            return res.status(500).json({ error: 'Error de configuración del servidor: Clave de API no encontrada.' });
-        }
-
-        try {
-            console.log('Enviando solicitud a OpenAI con message:', message);
-            const response = await openai.chat.completions.create({
-                model: 'gpt-3.5-turbo',
-                messages: [
-                    {
-                        role: 'system',
-                        content: `
-                            Eres un asistente virtual especializado en el Cupra Tavascan. Responde de manera concisa y amigable en español.
-                            Información sobre el Cupra Tavascan:
-                            - Modelo: ${cupraTavascanInfo.modelo}
-                            - Precio: ${cupraTavascanInfo.precio}
-                            - Autonomía: ${cupraTavascanInfo.autonomia}
-                            - Batería: ${cupraTavascanInfo.bateria}
-                            - Potencia: ${cupraTavascanInfo.potencia}
-                            - Aceleración: ${cupraTavascanInfo.aceleracion}
-                            - Colores disponibles: ${cupraTavascanInfo.colores.join(', ')}
-                            - Garantía: ${cupraTavascanInfo.garantia}
-                            - Carga: ${cupraTavascanInfo.carga}
-                            - Equipamiento: ${cupraTavascanInfo.equipamiento}
-                        `,
-                    },
-                    {
-                        role: 'user',
-                        content: message,
-                    },
-                ],
-                max_tokens: 150,
-                temperature: 0.7,
-            });
-
-            console.log('Respuesta de OpenAI recibida:', response.choices[0].message.content);
-            return res.status(200).json({
-                text: response.choices[0].message.content.trim(),
-                timestamp: new Date().toISOString()
-            });
-
-        } catch (processingError) {
-            console.error('Error en la API de OpenAI:', processingError.message);
-            if (processingError.response) {
-                console.error('Detalles del error:', processingError.response.data);
-            }
-            return res.status(500).json({
-                error: 'Error al contactar a la API de OpenAI',
-                details: processingError.message
-            });
-        }
-
+      // Obtener el mensaje del usuario
+      const { message } = req.body;
+      
+      // Verificar que el mensaje sea válido
+      if (!message || typeof message !== 'string' || message.trim().length === 0) {
+        return res.status(400).json({ error: 'El campo "message" es inválido o está vacío' });
+      }
+  
+      // Convertir el mensaje a minúsculas para hacer la comparación más sencilla
+      const mensajeLowerCase = message.toLowerCase().trim();
+      
+      // Variable para almacenar la respuesta
+      let respuesta = '';
+  
+      // Respuestas predefinidas basadas en palabras clave en la pregunta
+      if (mensajeLowerCase.includes('precio') || mensajeLowerCase.includes('cuesta') || mensajeLowerCase.includes('vale')) {
+        respuesta = `El Cupra Tavascan está disponible ${cupraTavascanInfo.precio}.`;
+      }
+      else if (mensajeLowerCase.includes('autonomía') || mensajeLowerCase.includes('autonomia') || mensajeLowerCase.includes('batería') || mensajeLowerCase.includes('bateria') || mensajeLowerCase.includes('kilómetros') || mensajeLowerCase.includes('km')) {
+        respuesta = `El Cupra Tavascan ofrece una autonomía de ${cupraTavascanInfo.autonomia} y cuenta con una batería de ${cupraTavascanInfo.bateria}.`;
+      }
+      else if (mensajeLowerCase.includes('potencia') || mensajeLowerCase.includes('cv') || mensajeLowerCase.includes('caballos') || mensajeLowerCase.includes('kw')) {
+        respuesta = `El Cupra Tavascan ofrece una potencia de ${cupraTavascanInfo.potencia}.`;
+      }
+      else if (mensajeLowerCase.includes('aceleración') || mensajeLowerCase.includes('aceleracion') || mensajeLowerCase.includes('0 a 100') || mensajeLowerCase.includes('rápido') || mensajeLowerCase.includes('rapido')) {
+        respuesta = `El Cupra Tavascan tiene una ${cupraTavascanInfo.aceleracion}.`;
+      }
+      else if (mensajeLowerCase.includes('color') || mensajeLowerCase.includes('colores')) {
+        respuesta = `El Cupra Tavascan está disponible en los siguientes colores: ${cupraTavascanInfo.colores.join(', ')}.`;
+      }
+      else if (mensajeLowerCase.includes('garantía') || mensajeLowerCase.includes('garantia')) {
+        respuesta = `La garantía del Cupra Tavascan es de ${cupraTavascanInfo.garantia}.`;
+      }
+      else if (mensajeLowerCase.includes('carga') || mensajeLowerCase.includes('cargar') || mensajeLowerCase.includes('tiempo')) {
+        respuesta = `El Cupra Tavascan tiene ${cupraTavascanInfo.carga}.`;
+      }
+      else if (mensajeLowerCase.includes('equipamiento') || mensajeLowerCase.includes('pantalla') || mensajeLowerCase.includes('navegador') || mensajeLowerCase.includes('apple') || mensajeLowerCase.includes('android')) {
+        respuesta = `El equipamiento del Cupra Tavascan incluye ${cupraTavascanInfo.equipamiento}.`;
+      }
+      else if (mensajeLowerCase.includes('característica') || mensajeLowerCase.includes('caracteristicas') || mensajeLowerCase.includes('especificaciones') || mensajeLowerCase.includes('información') || mensajeLowerCase.includes('informacion')) {
+        // Dar información general sobre el vehículo
+        respuesta = `El ${cupraTavascanInfo.modelo} es un SUV eléctrico con un precio ${cupraTavascanInfo.precio}, una autonomía de ${cupraTavascanInfo.autonomia}, batería de ${cupraTavascanInfo.bateria} y potencia de ${cupraTavascanInfo.potencia}. Ofrece ${cupraTavascanInfo.carga}.`;
+      }
+      else if (mensajeLowerCase.includes('hola') || mensajeLowerCase.includes('buenos días') || mensajeLowerCase.includes('buenas tardes') || mensajeLowerCase.includes('saludos')) {
+        respuesta = `¡Hola! Soy el asistente virtual de Cupra. ¿En qué puedo ayudarte con el Cupra Tavascan?`;
+      }
+      else {
+        // Respuesta por defecto si no se encuentra ninguna coincidencia
+        respuesta = `Lo siento, no tengo información específica sobre esa consulta. El Cupra Tavascan es un SUV eléctrico con una autonomía de hasta 510 km, potencia de hasta 340 CV y un precio desde 49,900€. ¿Hay algo específico que quieras saber sobre su precio, autonomía, equipamiento o características?`;
+      }
+  
+      // Devolver la respuesta
+      return res.status(200).json({ 
+        text: respuesta,
+        timestamp: new Date().toISOString()
+      });
+      
     } catch (error) {
-        console.error('Error no manejado en /api/chat:', error);
-        return res.status(500).json({
-            error: 'Error interno del servidor',
-            message: error.message,
-            stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
-        });
+      console.error('Error al procesar la solicitud:', error);
+      return res.status(500).json({ error: 'Error en el servidor', details: error.message });
     }
-}
+  }

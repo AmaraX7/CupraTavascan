@@ -43,7 +43,6 @@ function moveCarousel(direction) {
     }
 }
 
-
 function showInfo(number) {
     const infoBox = document.getElementById('info-box');
     let infoText = '';

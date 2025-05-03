@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<script src="scripts.js"></script>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Mi Web Cupra Tavascan</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -14,45 +15,78 @@
         </div>
     </header>
 
-    <section>
-        <p>Descubre el futuro de la conducción eléctrica, diseñado para emocionarte.</p>
-    </section>
 
-    <section>
-        <img src="/images/parteFrontal.jpg" usemap="#dashboard-map" alt="Parte Frontal" class="dash-img">
-        
-        <map name="dashboard-map">
-            <area shape="circle" coords="100,150,15" href="#" alt="1" onclick="showInfo(1)">
-            <area shape="circle" coords="130,160,15" href="#" alt="2" onclick="showInfo(2)">
-            <area shape="circle" coords="160,170,15" href="#" alt="3" onclick="showInfo(3)">
-        </map>
+    <nav class="tab-bar">
+        <button onclick="cambiarPestaña('inicio')">Home</button>
+        <button onclick="cambiarPestaña('uno')">Interior</button>
+        <button onclick="cambiarPestaña('dos')">Videos</button>
+        <h2>Welcome to Cupra Tavascan Experience</h2>
+    </nav>
 
-        <div id="info-box" class="info-box">
-            Haz clic para ver su explicación.
-        </div>
-    </section>
-
-    <section class="buttons">
-        <button onclick="showMessage('El modo ECO optimiza la energía para máxima autonomía.')">¿Qué es el modo ECO?</button>
-        <button onclick="showMessage('El sistema multimedia incluye conectividad Bluetooth y Apple CarPlay.')">¿Cómo conecto mi móvil?</button>
-    </section>
-
+  
     <section id="response">
         <!-- Aquí aparecerán los mensajes -->
     </section>
 
-    <!-- Carrusel de Videos -->
-    <section id="video-carousel">
-        <h2>Carrusel de Videos</h2>
-        <div class="carousel">
-            <button class="prev" onclick="moveCarousel(-1)">❮</button>
-            <div class="carousel-videos">
-                <iframe id="current-video" src="https://www.youtube.com/embed/Sdj9iO8opuU" frameborder="0" allowfullscreen></iframe>
+      
+      <div id="pestaña-inicio" class="pestaña activa" style="display: block;">
+        
+        <section id="countdown">
+            <h2>Cuenta regresiva para la llegada de tu coche:</h2>
+            <p id="timer">Cargando...</p>
+        </section>
+    </div>
+      
+      <div id="pestaña-uno" class="pestaña">
+        <h2>Overview (left hand drive)
+            
+            <section>
+                <div class="image-container">
+                    <img src="images/parteFrontal.jpg" alt="Parte Frontal" class="dashboard-image">
+                    
+                    <!-- Botones flotantes -->
+                    <button class="hotspot" style="top: 1.6%; left: 11.7%;" onclick="showInfo(1)">1</button>
+                    <button class="hotspot" style="top: 1.6%; left: 15.5%;" onclick="showInfo(2)">2</button>
+                    <button class="hotspot" style="top: 1.6%; left: 19.5%;" onclick="showInfo(3)">3</button>
+                    <button class="hotspot" style="top: 1.6%; left: 28.5%;" onclick="showInfo(4)">4</button>
+                    <button class="hotspot" style="top: 1.6%; left: 32.5%;" onclick="showInfo(5)">5</button>
+                    <button class="hotspot" style="top: 1.6%; left: 38.4%;" onclick="showInfo(6)">6</button>
+                    <button class="hotspot" style="top: 1.6%; left: 43%;" onclick="showInfo(5)">5</button>
+                    <button class="hotspot" style="top: 1.6%; left: 47%;" onclick="showInfo(7)">7</button>
+                    <button class="hotspot" style="top: 1.6%; left: 63.7%;" onclick="showInfo(8)">8</button>
+                    <button class="hotspot" style="top: 89.7%; left: 17.6%;" onclick="showInfo(9)">9</button>
+                    <button class="hotspot" style="top: 89.7%; left: 28%;" onclick="showInfo(10)">10</button>
+                    <button class="hotspot" style="top: 89.7%; left: 33%;" onclick="showInfo(11)">11</button>
+                    <button class="hotspot" style="top: 89.7%; left: 40%;" onclick="showInfo(12)">12</button>
+                    <button class="hotspot" style="top: 89.7%; left: 67.5%;" onclick="showInfo(13)">13</button>
+                </div>
+                
+                <div id="info-box" class="info-box">
+                    Click on a number to see more information.
+                </div>        
+            </section>
+            
+        </h2>
+      </div>
+      
+      <div id="pestaña-dos" class="pestaña" style="display: none;">
+    
+        <!-- Carrusel de Videos -->
+        <section id="video-carousel">
+            <h2>Tecnologias Tavascan</h2>
+            <div class="carousel">
+                <button class="prev" onclick="moveCarousel(-1)">❮</button>
+                <div class="carousel-videos">
+                    <iframe id="current-video" src="https://www.youtube.com/embed/Sdj9iO8opuU" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <button class="next" onclick="moveCarousel(1)">❯</button>
             </div>
-            <button class="next" onclick="moveCarousel(1)">❯</button>
-        </div>
-        <p id="video-description">Descripción del video 1: Introducción al Cupra Tavascan.</p>
-    </section>
+            <p id="video-description">Sistema de Aparcamiento en Línea</p>
+        </section>
+    </div>
+      
+      
+
 
     <!-- Chatbot -->
     <div id="chatbot-container">

@@ -129,8 +129,8 @@ h1 {
 
 .carousel-videos iframe {
     width: 100%;
-    max-width: 560px; /* Ajusta según el diseño */
-    height: 315px; /* Ajusta según el diseño */
+    max-width: 800px; /* Ajusta según el diseño */
+    height: 450px; /* Ajusta según el diseño */
 }
 
 button.prev, button.next {
@@ -157,6 +157,9 @@ button.next {
 button.prev:hover, button.next:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
+
+/* CHATBOT STYLES */
+
 #chatbot-container {
     position: fixed;
     bottom: 20px;

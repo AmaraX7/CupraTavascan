@@ -2,18 +2,69 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Proyecto</title>
+    <title>Cupra Tavascan Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+        }
+        #chatbox {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+        }
+        #userInput {
+            width: 80%;
+            padding: 5px;
+        }
+        #sendBtn {
+            padding: 5px 10px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a Cupra Tavascan</h1>
-    </header>
-    <main>
-        <p>Este es el inicio de tu proyecto. ¡Buena suerte!</p>
-    </main>
-    <footer>
-        <p>&copy; 2025 Cupra Tavascan</p>
-    </footer>
+
+    <h1>Cupra Tavascan Chatbot</h1>
+
+    <div id="chatbox"></div>
+
+    <input type="text" id="userInput" placeholder="Escribe tu pregunta...">
+    <button id="sendBtn">Enviar</button>
+
+    <script>
+        const chatbox = document.getElementById('chatbox');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        sendBtn.addEventListener('click', () => {
+            const userText = userInput.value;
+            if (userText.trim() === '') return;
+
+            chatbox.innerHTML += `<p><strong>Tú:</strong> ${userText}</p>`;
+
+            let botResponse = getBotResponse(userText);
+            chatbox.innerHTML += `<p><strong>Bot:</strong> ${botResponse}</p>`;
+
+            userInput.value = '';
+            chatbox.scrollTop = chatbox.scrollHeight;
+        });
+
+        function getBotResponse(input) {
+            input = input.toLowerCase();
+            if (input.includes('bluetooth')) {
+                return 'Para conectar por Bluetooth, ve al menú de conectividad y selecciona tu dispositivo.';
+            } else if (input.includes('modo eco')) {
+                return 'El modo ECO optimiza el consumo energético para máxima autonomía.';
+            } else {
+                return 'No entiendo tu pregunta. Prueba con otra.';
+            }
+        }
+    </script>
+
 </body>
 </html>

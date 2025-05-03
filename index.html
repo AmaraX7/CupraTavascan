@@ -25,10 +25,14 @@
     </section>
 
     <script>
-        function showMessage(message) {
-            const responseSection = document.getElementById('response');
-            responseSection.textContent = message;
-        }
+            function showMessage(message) {
+        const responseSection = document.getElementById('response');
+        responseSection.innerHTML = `
+            <div class="message-box">
+                ${message}
+            </div>
+        `;
+    }
     </script>
 </body>
 </html>

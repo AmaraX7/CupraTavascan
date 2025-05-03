@@ -103,6 +103,8 @@ h1 {
     text-align: left;
 }
 
+/* Video Carousel */
+
 #video-carousel {
     text-align: center;
     margin: 50px 0;
@@ -120,15 +122,15 @@ h1 {
 
 .carousel-videos {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .carousel-videos iframe {
-    width: 300px;
-    height: 200px;
-    margin: 0 10px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 560px; /* Ajusta según el diseño */
+    height: 315px; /* Ajusta según el diseño */
 }
 
 button.prev, button.next {

@@ -1,18 +1,24 @@
-let currentIndex = 0;
+const videoUrls = [
+    "https://www.youtube.com/embed/Sdj9iO8opuU",
+    "https://www.youtube.com/embed/NXiGN_T-M9U",
+    "https://www.youtube.com/embed/RdcoqVPYYug",
+    "https://www.youtube.com/embed/XubUlnIh1I"
+];
+
+let currentVideoIndex = 0;
 
 function moveCarousel(direction) {
-    const carousel = document.querySelector('.carousel-videos');
-    const videos = document.querySelectorAll('.carousel-videos video');
-    const totalVideos = videos.length;
+    // Actualizar el índice del video actual
+    currentVideoIndex += direction;
 
-    currentIndex += direction;
-
-    if (currentIndex < 0) {
-        currentIndex = totalVideos - 1;
-    } else if (currentIndex >= totalVideos) {
-        currentIndex = 0;
+    // Asegurarse de que el índice esté dentro de los límites
+    if (currentVideoIndex < 0) {
+        currentVideoIndex = videoUrls.length - 1;
+    } else if (currentVideoIndex >= videoUrls.length) {
+        currentVideoIndex = 0;
     }
 
-    const offset = -currentIndex * (videos[0].offsetWidth + 20); // 20px es el margen
-    carousel.style.transform = `translateX(${offset}px)`;
+    // Cambiar el video mostrado
+    const videoFrame = document.getElementById("current-video");
+    videoFrame.src = videoUrls[currentVideoIndex];
 }

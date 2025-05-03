@@ -256,7 +256,6 @@ button.prev:hover, button.next:hover {
 .message.typing {
     background-color: #eaeaea;
     color: #666;
-    font-style: italic;
 }
 
 .chat-input {

@@ -1,15 +1,23 @@
 /* Estilos base con imagen de fondo desde URL */
 body {
-  margin: 0;
-  padding: 0;
-  background-image: url('https://media.cupraofficial.com/content/dam/public/cupra-website/identity-and-values/background-textures/desktop/cupra-tavascan-background-desktop.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
-  overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-image: url('https://www.cupraofficial.es/content/dam/public/cupra-website/cars/tavascan/automatic-gallery/x-large/cupra-tavascan-blue-colour-21-inch-copper-black-covers-wheels.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    min-height: 100vh;
+    line-height: 1.6;
+    text-transform: none;
+  }
+  
+header {
+    background-color: #410d72;
+    color: white;
+    padding: 20px 0;
 }
 
 .main-image {
@@ -24,7 +32,7 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
-    background-color: #ff4800;
+    background-color: #ff0055;
     color: white;
     border-radius: 5px;
     cursor: pointer;

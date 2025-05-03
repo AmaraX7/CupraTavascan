@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<script src="scripts.js"></script>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Mi Web Cupra Tavascan</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
 </head>
 <body>
     <header>
@@ -21,18 +19,18 @@
     </section>
 
     <section>
-        <img src = "images/parteFrontal.jpg" usemap= "#dashboard-map" alt="Parte Frontal" class="dash-img">
+        <img src="/images/parteFrontal.jpg" usemap="#dashboard-map" alt="Parte Frontal" class="dash-img">
         
-        <map name="dash-map">
+        <map name="dashboard-map">
             <area shape="circle" coords="100,150,15" href="#" alt="1" onclick="showInfo(1)">
             <area shape="circle" coords="130,160,15" href="#" alt="2" onclick="showInfo(2)">
             <area shape="circle" coords="160,170,15" href="#" alt="3" onclick="showInfo(3)">
         </map>
 
-        <div id="Info-box" class="info-box">
+        <div id="info-box" class="info-box">
             Haz clic para ver su explicación.
         </div>
-    <section>
+    </section>
 
     <section class="buttons">
         <button onclick="showMessage('El modo ECO optimiza la energía para máxima autonomía.')">¿Qué es el modo ECO?</button>
@@ -43,119 +41,139 @@
         <!-- Aquí aparecerán los mensajes -->
     </section>
 
-
-
-<!-- Carrusel de Videos -->
-
-<section id="video-carousel">
-    <h2>Carrusel de Videos</h2>
-    <div class="carousel">
-        <button class="prev" onclick="moveCarousel(-1)">&#10094;</button>
-        <div class="carousel-videos">
-            <iframe id="current-video" src="https://www.youtube.com/embed/Sdj9iO8opuU" frameborder="0" allowfullscreen></iframe>
-        </div>
-        <button class="next" onclick="moveCarousel(1)">&#10095;</button>
-    </div>
-    <p class="video-description">Descripción del video actual</p>
-</section>
-
-
-<!--Botones-->
-
-
-<script>
-    // Mostrar mensajes de los botones
-    function showMessage(message) {
-        const responseSection = document.getElementById('response');
-        responseSection.innerHTML = `
-            <div class="message-box">
-                ${message}
+    <!-- Carrusel de Videos -->
+    <section id="video-carousel">
+        <h2>Carrusel de Videos</h2>
+        <div class="carousel">
+            <button class="prev" onclick="moveCarousel(-1)">❮</button>
+            <div class="carousel-videos">
+                <iframe id="current-video" src="https://www.youtube.com/embed/Sdj9iO8opuU" frameborder="0" allowfullscreen></iframe>
             </div>
-        `;
-    }
+            <button class="next" onclick="moveCarousel(1)">❯</button>
+        </div>
+        <p id="video-description">Descripción del video 1: Introducción al Cupra Tavascan.</p>
+    </section>
 
-    // Lógica del carrusel de videos
-    const videos = [
-        "https://www.youtube.com/embed/Sdj9iO8opuU",
-        "https://www.youtube.com/embed/another-video-id", // Agrega más URLs de videos
-    ];
-    let currentVideoIndex = 0;
+    <!-- Chatbot -->
+    <div id="chatbot-container">
+        <div class="chat-header">
+            <h3>Chatbot Cupra Tavascan</h3>
+            <button id="toggle-chat">Abrir/Cerrar</button>
+        </div>
+        <div id="chat-body" class="chat-body">
+            <div id="messages" class="messages"></div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Escribe tu pregunta...">
+                <button id="send-btn">Enviar</button>
+            </div>
+        </div>
+    </div>
 
-    function moveCarousel(direction) {
-        currentVideoIndex = (currentVideoIndex + direction + videos.length) % videos.length;
-        document.getElementById('current-video').src = videos[currentVideoIndex];
-    }
+    <script>
+        // Mostrar mensajes de los botones
+        function showMessage(message) {
+            const responseSection = document.getElementById('response');
+            responseSection.innerHTML = `
+                <div class="message-box">
+                    ${message}
+                </div>
+            `;
+        }
 
-    // Lógica del chatbot
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggleBtn = document.getElementById('toggle-chat');
-        const chatBody = document.getElementById('chat-body');
-        const sendBtn = document.getElementById('send-btn');
-        const userInput = document.getElementById('user-input');
-        const messagesContainer = document.getElementById('messages');
+        // Lógica del mapa interactivo
+        function showInfo(area) {
+            const infoBox = document.getElementById('info-box');
+            const info = {
+                1: 'Pantalla táctil de 15": Controla el sistema multimedia y la navegación.',
+                2: 'Asistente de voz: Usa comandos de voz para ajustar configuraciones.',
+                3: 'Panel de instrumentos digital: Muestra información clave del vehículo.',
+            };
+            infoBox.textContent = info[area] || 'Haz clic para ver su explicación.';
+        }
 
-        // Toggle chat window
-        toggleBtn.addEventListener('click', function() {
-            chatBody.classList.toggle('chat-hidden');
-        });
+        // Lógica del carrusel de videos
+        const videos = [
+            { url: "https://www.youtube.com/embed/Sdj9iO8opuU", description: "Introducción al Cupra Tavascan." },
+            { url: "https://www.youtube.com/embed/another-video-id", description: "Características avanzadas del Cupra Tavascan." }, // Reemplaza con un video real
+        ];
+        let currentVideoIndex = 0;
 
-        // Enviar mensaje
-        sendBtn.addEventListener('click', sendMessage);
-        userInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
+        function moveCarousel(direction) {
+            currentVideoIndex = (currentVideoIndex + direction + videos.length) % videos.length;
+            document.getElementById('current-video').src = videos[currentVideoIndex].url;
+            document.getElementById('video-description').textContent = videos[currentVideoIndex].description;
+        }
+
+        // Lógica del chatbot
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleBtn = document.getElementById('toggle-chat');
+            const chatBody = document.getElementById('chat-body');
+            const sendBtn = document.getElementById('send-btn');
+            const userInput = document.getElementById('user-input');
+            const messagesContainer = document.getElementById('messages');
+
+            // Toggle chat window
+            toggleBtn.addEventListener('click', function() {
+                chatBody.classList.toggle('visible');
+            });
+
+            // Enviar mensaje
+            sendBtn.addEventListener('click', sendMessage);
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            function sendMessage() {
+                const message = userInput.value.trim();
+                if (message === '') return;
+
+                // Añadir mensaje del usuario
+                addMessage(message, 'user');
+                userInput.value = '';
+
+                // Llamar al backend
+                getBotResponse(message);
+            }
+
+            function addMessage(message, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', sender);
+                messageDiv.textContent = message;
+                messagesContainer.appendChild(messageDiv);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+
+            async function getBotResponse(message) {
+                addMessage('Escribiendo...', 'bot typing');
+
+                try {
+                    const response = await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ prompt: message }),
+                    });
+
+                    const data = await response.json();
+                    const typingMessage = document.querySelector('.message.typing');
+                    if (typingMessage) {
+                        messagesContainer.removeChild(typingMessage);
+                    }
+
+                    addMessage(data.reply, 'bot');
+                } catch (error) {
+                    console.error('Error:', error);
+                    const typingMessage = document.querySelector('.message.typing');
+                    if (typingMessage) {
+                        messagesContainer.removeChild(typingMessage);
+                    }
+                    addMessage('Error al conectar con el servidor.', 'bot');
+                }
             }
         });
-
-        function sendMessage() {
-            const message = userInput.value.trim();
-            if (message === '') return;
-
-            // Añadir mensaje del usuario
-            addMessage(message, 'user');
-            userInput.value = '';
-
-            // Llamar al backend
-            getBotResponse(message);
-        }
-
-        function addMessage(message, sender) {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('message', sender);
-            messageDiv.textContent = message;
-            messagesContainer.appendChild(messageDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }
-
-        async function getBotResponse(message) {
-            addMessage('Escribiendo...', 'bot typing');
-
-            try {
-                const response = await fetch('http://localhost:3000/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ prompt: message }),
-                });
-
-                const data = await response.json();
-                const typingMessage = document.querySelector('.bot.typing');
-                if (typingMessage) {
-                    messagesContainer.removeChild(typingMessage);
-                }
-
-                addMessage(data.reply, 'bot');
-            } catch (error) {
-                console.error('Error:', error);
-                const typingMessage = document.querySelector('.bot.typing');
-                if (typingMessage) {
-                    messagesContainer.removeChild(typingMessage);
-                }
-                addMessage('Error al conectar con el servidor.', 'bot');
-            }
-        }
-    });
-</script>
+    </script>
 </body>
 </html>
